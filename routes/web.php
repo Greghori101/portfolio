@@ -28,11 +28,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Front-End Routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin Panel
-Route::middleware(['auth','isAdmin'])->name('admin.')->prefix('/admin')->group(function(){
+Route::middleware(['auth'])->name('admin.')->prefix('/admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/qualification/education', [QualificationController::class,'showEducation'])->name('qualification.edu');
     Route::get('/qualification/experience', [QualificationController::class,'showExperience'])->name('qualification.exp');

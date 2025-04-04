@@ -214,12 +214,12 @@
 
     <!-- Testimonial Start -->
     <div class="container-fluid py-5" id="testimonial">
-        <div class="container">
+<div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
                 <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Review</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Clients Say</h1>
             </div>
-            <div class="row justify-content-center">
+    <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="owl-carousel testimonial-carousel">
                         @foreach ($reviewers as $review)
@@ -253,7 +253,7 @@
                           {{ Session::get('message') }}
                         </div>
                         <br>
-                        @endif
+                    @endif
                         <form id="contactForm" method="POST" action="{{ route('contact') }}">
                             @csrf
                             <div class="form-row">
@@ -321,7 +321,7 @@
             <p class="m-0">&copy; <a class="text-white font-weight-bold" href="#">Domain Name</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
             </p>
         </div>
-    </div>
+</div>
     <!-- Footer End -->
 
     <!-- Scroll to Bottom -->
