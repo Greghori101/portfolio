@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap, Dot } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TechLogos } from '@/components/tech-logos'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 
 
@@ -17,27 +17,55 @@ const navItems = [
   { label: 'Research', href: '#research' },
 ]
 
+function formatMonthYear(value: string) {
+  const trimmed = value.trim()
+  if (/^\d{4}$/.test(trimmed)) {
+    const year = Number(trimmed)
+    const date = new Date(year, 0, 1)
+    if (Number.isNaN(date.getTime())) return value
+    return new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(date)
+  }
+
+  const match = trimmed.match(/^(\d{4})[-/](\d{1,2})$/)
+  if (!match) return value
+
+  const year = Number(match[1])
+  const monthIndex = Number(match[2]) - 1
+  const date = new Date(year, monthIndex, 1)
+  if (Number.isNaN(date.getTime())) return value
+  return new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(date)
+}
+
+function formatDateRange(start: string, end?: string | null) {
+  const startLabel = formatMonthYear(start)
+  const endLabel = end ? formatMonthYear(end) : 'Present'
+  return `${startLabel} — ${endLabel}`
+}
+
 const experiences = [
   {
-    title: 'Software Engineer',
+    title: 'Backend Developer',
     company: 'Sobiapi',
-    period: '2025',
-    description: 'Built AI agent platform with automated workflows. Improved productivity by 40%.',
-    highlight: 'Real-time WebSocket communication & AI automation',
+    start: '2025-08',
+    end: '2025-10',
+    description: 'Developed a real estate AI agent platform with n8n-driven automated workflows and real-time updates.',
+    highlight: 'AI automation + workflow orchestration (n8n) for real estate operations',
     tech: ['Nest.js', 'Next.js', 'N8n'],
   },
   {
     title: 'Software Engineer',
     company: 'Apollo Digital Solutions',
-    period: '2024 – 2025',
-    description: 'Designed three SaaS platforms. Reduced load times by 45% using SSR/ISR.',
-    highlight: '45% frontend performance improvement via advanced caching',
-    tech: ['Laravel', 'Next.js', 'Docker'],
+    start: '2024-07',
+    end: '2025-08',
+    description: 'Designed and developed full SaaS applications with Stripe integrations and mentored engineering interns.',
+    highlight: 'Stripe payments integration + end-to-end SaaS delivery and mentorship',
+    tech: ['Laravel', 'Next.js', 'Stripe', 'Docker'],
   },
   {
     title: 'Software Engineer Intern',
     company: 'Sonelgaz',
-    period: '2023',
+    start: '2023-11',
+    end: '2023-12',
     description: 'Process automation and infrastructure management.',
     highlight: '99.9% uptime maintenance & 100% workflow automation',
     tech: ['PHP', 'JavaScript'],
@@ -74,8 +102,7 @@ const projects = [
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [navOpen, setNavOpen] = useState(false)
-  
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
@@ -83,26 +110,31 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <div className="bg-background text-foreground overflow-x-hidden">
+    <div className="bg-background text-foreground overflow-x-hidden transition-colors duration-500">
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         className="fixed top-0 w-full z-50 px-6 py-4"
         initial={{ opacity: 1 }}
         animate={{ opacity: scrolled ? 0 : 1 }}
         transition={{ duration: 0.5 }}
-        pointerEvents={scrolled ? 'none' : 'auto'}
+        style={{ pointerEvents: scrolled ? 'none' : 'auto' }}
       >
-        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+        <div className="max-w-350 mx-auto flex justify-between gap-4">
           <Link href="/" className="text-2xl font-black uppercase tracking-tighter">
-            Houssine<span className="text-accent">.</span>
+            SOUALA<span className="text-accent">.</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             <Link href="https://github.com/Greghori101" target="_blank">
               <Button variant="outline" size="sm" className="rounded-full">
                 <Github size={16} className="mr-2" /> GitHub
               </Button>
             </Link>
+          </div>
+          <div className='grow md:hidden'></div>
+          <div className="md:hidden flex items-center"  >
+            <ThemeToggle />
           </div>
 
           <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -111,14 +143,81 @@ export default function Portfolio() {
         </div>
       </motion.nav>
 
+      <AnimatePresence>
+        {mobileMenuOpen ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                <Link
+                  href="/"
+                  className="text-2xl font-black uppercase tracking-tighter"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  SOUALA<span className="text-accent">.</span>
+                </Link>
+                <div className="flex items-center gap-3">
+                  <button onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-3xl font-black uppercase tracking-tight hover:text-accent transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-12 pt-10 border-t border-border flex flex-col gap-4">
+                <Link
+                  href="https://github.com/Greghori101"
+                  target="_blank"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Button variant="outline" className="w-full rounded-full">
+                    <Github size={16} className="mr-2" /> GitHub
+                  </Button>
+                </Link>
+                <Link
+                  href="https://www.linkedin.com/in/hoceyne/"
+                  target="_blank"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Button variant="outline" className="w-full rounded-full">
+                    <Linkedin size={16} className="mr-2" /> LinkedIn
+                  </Button>
+                </Link>
+                <Link href="mailto:e.souala@esi-sba.dz" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full rounded-full">
+                    <Mail size={16} className="mr-2" /> Email
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
       {/* Sticky Navigation Dots */}
-      <motion.div 
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-40"
+      <motion.div
+        className="block fixed right-4 lg:right-6 top-1/2 -translate-y-1/2 z-40"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex flex-col gap-4 px-4 py-7 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300">
+        <div className="flex flex-col gap-4 px-4 py-7 bg-background/70 backdrop-blur-sm border border-border/60 rounded-full shadow-2xl hover:border-border transition-all duration-300">
           {navItems.map((item, idx) => (
             <motion.div
               key={item.href}
@@ -141,9 +240,9 @@ export default function Portfolio() {
               </Tooltip>
             </motion.div>
           ))}
-          
+
           <div className="w-0.5 h-0.5 bg-accent/40 rounded-full mx-auto my-1" />
-          
+
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -178,9 +277,9 @@ export default function Portfolio() {
             maskImage: 'radial-gradient(circle, transparent 0%, black 70%)'
           }} />
         </div>
-        
-        <div className="relative z-10 max-w-[1400px] mx-auto w-full">
-          <motion.div 
+
+        <div className="relative z-10 max-w-360 mx-auto w-full">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -205,7 +304,7 @@ export default function Portfolio() {
             >
               <h1 className="text-5xl md:text-7xl font-black uppercase leading-tight tracking-tight">
                 Full-Stack Engineer & <br />
-                <span className="bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-accent to-accent/60 bg-clip-text text-transparent">
                   AI Systems Designer
                 </span>
               </h1>
@@ -278,7 +377,7 @@ export default function Portfolio() {
 
       {/* About Section */}
       <section id="about" className="relative py-32 px-6 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-360 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -296,14 +395,14 @@ export default function Portfolio() {
 
             <div className="space-y-8 text-lg text-muted-foreground">
               <p className="text-foreground text-xl font-medium leading-relaxed">
-                I'm a full-stack software engineer with a language-agnostic architectural mindset, specializing in solving complex problems through clean, production-ready code.
+                I&apos;m a full-stack software engineer with a language-agnostic architectural mindset, specializing in solving complex problems through clean, production-ready code.
               </p>
 
               <p>
                 Currently pursuing a PhD in Quantum Computing at USTHB while working on cutting-edge technologies. My expertise spans deep learning, distributed systems, blockchain technology, and cloud infrastructure.
               </p>
 
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-border">
                 <div>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-3">Location</p>
                   <p className="text-lg font-black text-foreground uppercase">Algiers, Algeria</p>
@@ -320,7 +419,7 @@ export default function Portfolio() {
 
       {/* Projects Section */}
       <section id="projects" className="py-32 px-6 overflow-hidden">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-360 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -336,7 +435,7 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -345,16 +444,16 @@ export default function Portfolio() {
                 className="group relative flex flex-col h-full bg-card border border-border hover:border-accent/50 p-8 transition-all duration-500 overflow-hidden"
               >
                 <Link href={project.link} target="_blank" className="flex flex-col h-full">
-                  <div className="space-y-4 flex-grow">
+                  <div className="space-y-4 grow">
                     <div className="flex justify-between items-start">
                       <span className="text-xs font-bold uppercase tracking-widest text-accent">{project.category}</span>
                       <ArrowUpRight className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" size={20} />
                     </div>
-                    
+
                     <h3 className="text-2xl font-black uppercase tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
                       {project.title}
                     </h3>
-                    
+
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {project.description}
                     </p>
@@ -365,14 +464,14 @@ export default function Portfolio() {
                     <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
                     <div className="relative h-14 flex items-center">
                       {project.tech.slice(0, 4).map((t, idx) => (
-                        <div 
-                          key={idx} 
+                        <div
+                          key={idx}
                           className="group/tech absolute w-12 h-12 rounded-full bg-accent/10 border-2 border-card hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help hover:z-10 hover:scale-125 hover:shadow-lg hover:shadow-accent/30"
                           style={{ left: `${idx * 2.5}rem` }}
                           title={t}
                         >
-                          <img 
-                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`} 
+                          <img
+                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`}
                             alt={t}
                             className="w-6 h-6 object-contain"
                             onError={(e) => {
@@ -410,7 +509,7 @@ export default function Portfolio() {
 
       {/* Experience Section */}
       <section id="experience" className="py-32 px-6 overflow-hidden border-t border-border">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-360 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -439,27 +538,32 @@ export default function Portfolio() {
           {/* Experience Timeline */}
           <div className="space-y-4">
             {experiences.map((exp, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group grid md:grid-cols-4 gap-6 py-8 px-6 rounded-lg border border-border hover:border-accent/50 bg-card hover:bg-secondary transition-all duration-300"
+                className="group grid md:grid-cols-4 gap-6 py-6 sm:py-8 px-4 sm:px-6 rounded-lg border border-border hover:border-accent/50 bg-card hover:bg-secondary transition-all duration-300"
               >
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">{exp.period}</p>
+                  <p className="hidden md:block text-xs uppercase tracking-widest text-muted-foreground font-bold">
+                    {formatDateRange(exp.start, exp.end)}
+                  </p>
                 </div>
 
                 <div className="md:col-span-2 space-y-3">
                   <h3 className="text-xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground font-semibold">{exp.company}</p>
+                  <p className="text-sm text-muted-foreground font-semibold">
+                    {exp.company}
+                    <span className="md:hidden"> • {formatDateRange(exp.start, exp.end)}</span>
+                  </p>
                   <p className="text-xs text-accent font-bold">{exp.highlight}</p>
                 </div>
 
-                <div className="flex md:justify-end pt-4 md:pt-0">
+                <div className="flex justify-end md:justify-end md:items-start pt-0 md:pt-0">
                   <ArrowUpRight className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" size={20} />
                 </div>
               </motion.div>
@@ -470,7 +574,7 @@ export default function Portfolio() {
 
       {/* Research Section */}
       <section id="research" className="py-32 px-6 overflow-hidden border-t border-border">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-360 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -496,7 +600,7 @@ export default function Portfolio() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-black text-foreground mb-3">Master's in Computer Science</h3>
+                <h3 className="text-2xl font-black text-foreground mb-3">Master&apos;s in Computer Science</h3>
                 <p className="text-foreground font-semibold mb-2">ESI-SBA University • 2019-2024</p>
                 <p className="leading-relaxed">
                   Thesis: <span className="text-accent font-semibold">Real-time Autospares Detection using Deep Learning</span>. Developed CNN models for real-time object detection in automotive applications.
@@ -520,14 +624,14 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-[1400px] mx-auto text-center space-y-8"
+          className="max-w-360 mx-auto text-center space-y-8"
         >
           <h2 className="text-4xl md:text-5xl font-black uppercase leading-tight">
             Got a project in mind?<br />
-            <span className="text-accent">Let's build something great</span>
+            <span className="text-accent">Let&apos;s build something great</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Whether it's a quantum-safe system, AI integration, or scalable architecture, I'm ready to turn ideas into production-ready solutions.
+            Whether it&apos;s a quantum-safe system, AI integration, or scalable architecture, I&apos;m ready to turn ideas into production-ready solutions.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
             <Link href="mailto:e.souala@esi-sba.dz">
@@ -546,7 +650,7 @@ export default function Portfolio() {
 
       {/* Footer */}
       <footer className="py-16 px-6 border-t border-border overflow-hidden">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-360 mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4">
               <h3 className="text-2xl font-black uppercase">Souala<span className="text-accent">.</span></h3>
@@ -554,8 +658,8 @@ export default function Portfolio() {
                 Full-stack engineer building scalable systems at the intersection of AI and quantum computing research.
               </p>
             </div>
-            
-            <div className="grid grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8">
               <div className="space-y-4">
                 <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Navigation</p>
                 <div className="flex flex-col gap-3 text-sm">
