@@ -7,6 +7,7 @@ import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap, Dot } from 'lucide-
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TechLogos } from '@/components/tech-logos'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 
 
 const navItems = [
@@ -117,7 +118,7 @@ export default function Portfolio() {
         animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex flex-col gap-4 px-3.5 py-6 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+        <div className="flex flex-col gap-4 px-4 py-7 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300">
           {navItems.map((item, idx) => (
             <motion.div
               key={item.href}
@@ -125,32 +126,44 @@ export default function Portfolio() {
               animate={{ scale: 1 }}
               transition={{ delay: idx * 0.05 }}
             >
-              <Link
-                href={item.href}
-                className="group relative w-3 h-3 rounded-full bg-accent/60 hover:bg-accent hover:scale-150 transition-all duration-300 flex items-center justify-center"
-                title={item.label}
-              >
-                <span className="sr-only">{item.label}</span>
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={item.href}
+                    className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
+                  >
+                    <span className="sr-only">{item.label}</span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
+                  {item.label}
+                </TooltipContent>
+              </Tooltip>
             </motion.div>
           ))}
           
-          <div className="w-0.5 h-0.5 bg-accent/30 rounded-full mx-auto my-1" />
+          <div className="w-0.5 h-0.5 bg-accent/40 rounded-full mx-auto my-1" />
           
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: navItems.length * 0.05 }}
           >
-            <Link
-              href="https://github.com/Greghori101"
-              target="_blank"
-              className="group relative w-3 h-3 rounded-full bg-accent/60 hover:bg-accent hover:scale-150 transition-all duration-300 flex items-center justify-center"
-              title="GitHub"
-            >
-              <Github size={8} className="text-background opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="sr-only">GitHub</span>
-            </Link>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="https://github.com/Greghori101"
+                  target="_blank"
+                  className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
+                >
+                  <Github size={8} className="text-background opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
+                GitHub
+              </TooltipContent>
+            </Tooltip>
           </motion.div>
         </div>
       </motion.div>
