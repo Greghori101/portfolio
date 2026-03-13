@@ -3,10 +3,15 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap, Dot } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TechLogos } from '@/components/tech-logos'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -72,6 +77,7 @@ const projects = [
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false)
   
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -82,32 +88,94 @@ export default function Portfolio() {
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-background/95 backdrop-blur-xl border-b border-border' : 'bg-transparent'}`}>
-        <div className="max-w-[1400px] mx-auto px-6 py-4 flex justify-between items-center">
+      <motion.nav 
+        className="fixed top-0 w-full z-50 px-6 py-4"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.5 }}
+        pointerEvents={scrolled ? 'none' : 'auto'}
+      >
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
           <Link href="/" className="text-2xl font-black uppercase tracking-tighter">
             Houssine<span className="text-accent">.</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map(item => (
-              <Link key={item.href} href={item.href} className="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <Link href="https://github.com/Greghori101" target="_blank">
-              <Button variant="outline" size="sm" className="rounded-full hidden md:flex">
+              <Button variant="outline" size="sm" className="rounded-full">
                 <Github size={16} className="mr-2" /> GitHub
               </Button>
             </Link>
-            <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
+
+          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </nav>
+      </motion.nav>
+
+      {/* Sticky Navigation Dots with Popover */}
+      <motion.div 
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-40"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Popover open={navOpen} onOpenChange={setNavOpen}>
+          <PopoverTrigger asChild>
+            <button className="group flex flex-col items-center gap-2 focus:outline-none">
+              <div className="flex flex-col gap-3 px-3 py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: idx * 0.05 }}
+                    className="w-2 h-2 rounded-full bg-accent/60 hover:bg-accent group-hover:bg-accent transition-colors duration-300"
+                  />
+                ))}
+              </div>
+            </button>
+          </PopoverTrigger>
+          
+          <PopoverContent 
+            className="w-64 bg-background/95 backdrop-blur-2xl border border-accent/20 rounded-xl shadow-2xl p-0"
+            side="left"
+            align="center"
+          >
+            <div className="flex flex-col p-4 gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setNavOpen(false)}
+                  className="group px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors duration-300 flex items-center justify-between"
+                >
+                  <span className="text-sm font-bold uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
+                    {item.label}
+                  </span>
+                  <motion.div
+                    className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity"
+                    layoutId="navIndicator"
+                  />
+                </Link>
+              ))}
+              <div className="border-t border-border my-2" />
+              <Link
+                href="https://github.com/Greghori101"
+                target="_blank"
+                onClick={() => setNavOpen(false)}
+                className="group px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors duration-300 flex items-center justify-between"
+              >
+                <span className="text-sm font-bold uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
+                  GitHub
+                </span>
+                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-accent transition-colors" />
+              </Link>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </motion.div>
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden">
