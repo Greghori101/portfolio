@@ -7,11 +7,7 @@ import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap, Dot } from 'lucide-
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TechLogos } from '@/components/tech-logos'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -114,67 +110,49 @@ export default function Portfolio() {
         </div>
       </motion.nav>
 
-      {/* Sticky Navigation Dots with Popover */}
+      {/* Sticky Navigation Dots */}
       <motion.div 
         className="fixed right-6 top-1/2 -translate-y-1/2 z-40"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
         transition={{ duration: 0.5 }}
       >
-        <Popover open={navOpen} onOpenChange={setNavOpen}>
-          <PopoverTrigger asChild>
-            <button className="group flex flex-col items-center gap-2 focus:outline-none">
-              <div className="flex flex-col gap-3 px-3 py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                {navItems.map((item, idx) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: idx * 0.05 }}
-                    className="w-2 h-2 rounded-full bg-accent/60 hover:bg-accent group-hover:bg-accent transition-colors duration-300"
-                  />
-                ))}
-              </div>
-            </button>
-          </PopoverTrigger>
-          
-          <PopoverContent 
-            className="w-64 bg-background/95 backdrop-blur-2xl border border-accent/20 rounded-xl shadow-2xl p-0"
-            side="left"
-            align="center"
-          >
-            <div className="flex flex-col p-4 gap-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setNavOpen(false)}
-                  className="group px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors duration-300 flex items-center justify-between"
-                >
-                  <span className="text-sm font-bold uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
-                    {item.label}
-                  </span>
-                  <motion.div
-                    className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity"
-                    layoutId="navIndicator"
-                  />
-                </Link>
-              ))}
-              <div className="border-t border-border my-2" />
+        <div className="flex flex-col gap-4 px-3.5 py-6 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          {navItems.map((item, idx) => (
+            <motion.div
+              key={item.href}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: idx * 0.05 }}
+            >
               <Link
-                href="https://github.com/Greghori101"
-                target="_blank"
-                onClick={() => setNavOpen(false)}
-                className="group px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors duration-300 flex items-center justify-between"
+                href={item.href}
+                className="group relative w-3 h-3 rounded-full bg-accent/60 hover:bg-accent hover:scale-150 transition-all duration-300 flex items-center justify-center"
+                title={item.label}
               >
-                <span className="text-sm font-bold uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
-                  GitHub
-                </span>
-                <ArrowUpRight size={14} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                <span className="sr-only">{item.label}</span>
               </Link>
-            </div>
-          </PopoverContent>
-        </Popover>
+            </motion.div>
+          ))}
+          
+          <div className="w-0.5 h-0.5 bg-accent/30 rounded-full mx-auto my-1" />
+          
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: navItems.length * 0.05 }}
+          >
+            <Link
+              href="https://github.com/Greghori101"
+              target="_blank"
+              className="group relative w-3 h-3 rounded-full bg-accent/60 hover:bg-accent hover:scale-150 transition-all duration-300 flex items-center justify-center"
+              title="GitHub"
+            >
+              <Github size={8} className="text-background opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="sr-only">GitHub</span>
+            </Link>
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Hero Section */}
