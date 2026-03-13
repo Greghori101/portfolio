@@ -3,402 +3,340 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { CardCarousel } from '@/components/card-carousel'
-import { GeometricBackground } from '@/components/geometric-background'
 import { TechLogos } from '@/components/tech-logos'
 
-interface NavItem {
-  label: string
-  href: string
-}
-
-const navItems: NavItem[] = [
+const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
 ]
 
-const skills = {
-  'AI & Machine Learning': ['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI API', 'Deep Learning', 'CNN Models'],
-  'Backend': ['Node.js (Nest.js)', 'Python (FastAPI, Django)', 'PHP (Laravel)', 'REST APIs', 'Microservices'],
-  'Frontend': ['React', 'Next.js', 'Vue 3', 'TypeScript', 'Tailwind CSS'],
-  'DevOps & Cloud': ['Docker', 'Kubernetes', 'AWS (EC2, Lambda, S3)', 'GitHub Actions', 'Terraform', 'CI/CD'],
-  'Core': ['System Design', 'Clean Architecture', 'SOLID Principles', 'Database Optimization', 'Algorithms'],
-}
-
 const experiences = [
   {
     title: 'Software Engineer',
     company: 'Sobiapi',
-    period: 'Aug 2025 – Oct 2025',
-    description: 'Built AI agent platform with automated workflows and real-time WebSocket communication. Improved agent productivity by 40% through property statistics and workflow automation.',
-    tech: ['Nest.js', 'Next.js', 'N8n', 'WebSockets'],
+    period: '2025',
+    description: 'Built AI agent platform with automated workflows. Improved productivity by 40%.',
+    tech: ['Nest.js', 'Next.js', 'N8n'],
   },
   {
     title: 'Software Engineer',
     company: 'Apollo Digital Solutions',
-    period: 'Jul 2024 – Aug 2025',
-    description: 'Designed three SaaS platforms focusing on backend scalability. Reduced frontend load times by 45% with SSR/ISR. Engineered modular REST APIs with 300ms response time.',
-    tech: ['Laravel', 'Next.js', 'Docker', 'GitHub Actions'],
-  },
-  {
-    title: 'Software Engineer Intern',
-    company: 'Sonelgaz',
-    period: 'Dec 2023',
-    description: 'Developed order-management system handling ~100 daily orders. Automated 100% of manual workflows. Maintained network infrastructure with 99.9% uptime.',
-    tech: ['PHP', 'JavaScript', 'Infrastructure'],
+    period: '2024 – 2025',
+    description: 'Designed three SaaS platforms. Reduced load times by 45% using SSR/ISR.',
+    tech: ['Laravel', 'Next.js', 'Docker'],
   },
 ]
 
 const projects = [
   {
     title: 'Quantum-Safe Blockchain',
-    description: 'PhD thesis project on quantum-safe blockchain and distributed ledger technologies',
-    tech: ['Quantum Computing', 'Blockchain', 'Cryptography'],
+    category: 'PHD RESEARCH',
+    description: 'Thesis project on quantum-safe blockchain and distributed ledger technologies.',
+    image: '/placeholder.jpg',
     link: 'https://github.com/Greghori101',
-  },
-  {
-    title: 'Real-time Autospares Detection',
-    description: 'Master\'s thesis using deep learning for real-time object detection in autospares',
-    tech: ['Deep Learning', 'CNN', 'TensorFlow', 'Computer Vision'],
-    link: 'https://github.com/Greghori101',
+    tech: ['python', 'docker', 'kubernetes', 'postgresql']
   },
   {
     title: 'AI Agent Platform',
-    description: 'Real-estate AI agent platform with automated workflows and real-time statistics',
-    tech: ['Nest.js', 'Next.js', 'N8n', 'WebSockets'],
+    category: 'FULL STACK',
+    description: 'Automated workflows and real-time statistics for real estate.',
+    image: '/placeholder-user.jpg',
     link: 'https://github.com/Greghori101',
+    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb']
+  },
+  {
+    title: 'Autospares Detection',
+    category: 'MACHINE LEARNING',
+    description: 'Computer vision for real-time object detection in autospares.',
+    image: '/placeholder.jpg',
+    link: 'https://github.com/Greghori101',
+    tech: ['python', 'tensorflow', 'pytorch', 'docker']
   },
 ]
 
 export default function Portfolio() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="bg-background text-foreground">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md border-b border-border' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              SE
-            </div>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'glass py-4' : 'bg-transparent py-8'}`}>
+        <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+          <Link href="/" className="text-2xl font-black uppercase tracking-tighter">
+            Houssine<span className="text-accent">.</span>
+          </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
-              {navItems.map(item => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="hidden md:flex gap-4">
-              <Link href="https://github.com/Greghori101" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm">GitHub</Button>
+          <div className="hidden md:flex items-center gap-12">
+            {navItems.map(item => (
+              <Link key={item.href} href={item.href} className="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">
+                {item.label}
               </Link>
-              <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer">
-                <Button size="sm">LinkedIn</Button>
+            ))}
+            <div className="flex gap-4">
+              <Link href="https://github.com/Greghori101" target="_blank">
+                <Button variant="outline" size="sm" className="rounded-full px-4 font-bold uppercase text-[10px] tracking-widest border-2">
+                  <Github size={14} className="mr-2" /> GitHub
+                </Button>
+              </Link>
+              <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank">
+                <Button size="sm" className="rounded-full px-4 font-bold uppercase text-[10px] tracking-widest">
+                  <Linkedin size={14} className="mr-2" /> LinkedIn
+                </Button>
               </Link>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
 
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden pb-4 space-y-4">
-              {navItems.map(item => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="flex gap-4 pt-4">
-                <Link href="https://github.com/Greghori101" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button variant="outline" size="sm" className="w-full">GitHub</Button>
-                </Link>
-                <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button size="sm" className="w-full">LinkedIn</Button>
-                </Link>
-              </div>
-            </div>
-          )}
+          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center pt-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text */}
-            <div className="space-y-8">
-              <div className="space-y-2">
-                <p className="text-primary font-semibold">Welcome to my portfolio</p>
-                <h1 className="text-5xl md:text-6xl font-bold leading-tight text-balance">
-                  Souala Elhoussine
-                </h1>
-                <p className="text-2xl text-muted-foreground">PhD Candidate in Quantum Computing</p>
+      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 overflow-hidden bg-white">
+        {/* Subtle Background Elements to fill "empty" space */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="relative z-10 max-w-[1400px] mx-auto w-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center md:items-start space-y-8"
+          >
+            <div className="overflow-hidden w-full">
+              <motion.div 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-wrap justify-center md:justify-start gap-6 text-[4vw] md:text-[5vw] font-black uppercase tracking-[0.2em] text-accent w-full leading-none opacity-80"
+              >
+                <span>PHD CANDIDATE & SOFTWARE ENGINEER</span>
+              </motion.div>
+            </div>
+            
+            <div className="w-full">
+              <h1 className="text-[18vw] md:text-[22vw] leading-[0.75] font-black text-mask text-center md:text-left py-10 uppercase tracking-tighter" style={{ backgroundImage: 'url(/text-mask.png)' }}>
+                SOUALA<br />ELHOUSSINE
+              </h1>
+            </div>
+            
+            <div className="w-full flex flex-col md:flex-row gap-12 items-center md:items-end justify-between mt-12">
+              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left max-w-2xl">
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-xl md:text-3xl font-medium leading-tight text-neutral-900 tracking-tight"
+                >
+                  Engineering scalable solutions with a language-agnostic mindset. Bridging the gap between academic research and production-ready systems.
+                </motion.p>
               </div>
 
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-                Full-stack research engineer specializing in scalable system design and AI integration. Proven track record of taking projects from UML proof-of-concept to production deployment with a focus on clean architecture and performance optimization.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="#experience">
-                  <Button size="lg" className="w-full sm:w-auto">Explore My Work</Button>
-                </Link>
-                <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">Get in Touch</Button>
-                </Link>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex gap-6 pt-4">
-                <Link href="https://github.com/Greghori101" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <span className="text-2xl">⚙️</span>
-                </Link>
-                <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <span className="text-2xl">💼</span>
-                </Link>
+              <div className="flex flex-col items-center md:items-end gap-6 shrink-0">
+                <div className="flex gap-4">
+                  <div className="flex flex-col items-center md:items-end p-2 text-primary">
+                    <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-1">Experience</p>
+                    <p className="text-3xl font-black">3+ YEARS</p>
+                  </div>
+                  <div className="w-px h-12 bg-neutral-100 hidden md:block" />
+                  <div className="flex flex-col items-center md:items-end p-2 text-primary">
+                    <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-1">Projects</p>
+                    <p className="text-3xl font-black">20+</p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-6">
+                  <Link href="https://github.com/Greghori101" target="_blank" className="text-primary hover:text-accent transition-colors"><Github size={28} /></Link>
+                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="text-primary hover:text-accent transition-colors"><Linkedin size={28} /></Link>
+                  <Link href="mailto:e.souala@esi-sba.dz" className="text-primary hover:text-accent transition-colors"><Mail size={28} /></Link>
+                </div>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
 
-            {/* Right Column - Profile Image */}
-            <div className="hidden md:flex justify-center">
-              <div className="relative w-72 h-72 rounded-2xl overflow-hidden border-2 border-primary/30 hover:border-primary/60 transition-colors duration-300 shadow-2xl">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design-HGcceKtzjg3zcrdxwXyAXRPYgXERkX.png"
-                  alt="Souala Elhoussine"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+      {/* About Section - Black with Background Info */}
+      <section id="about" className="relative section-black py-40 px-6 mt-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay grayscale" 
+             style={{ backgroundImage: 'url(/placeholder.jpg)' }} />
+        
+        <div className="relative z-10 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20">
+          <div className="space-y-4">
+            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent">THE INDIVIDUAL</span>
+            <h2 className="text-6xl md:text-8xl font-black uppercase leading-none">THE<br />ENGINEER</h2>
+          </div>
+          <div className="space-y-8 text-xl text-neutral-400">
+            <p className="text-white text-3xl font-medium leading-tight">
+              I approach development with a language-agnostic, architectural mindset, prioritizing problem-solving and clean production pipelines.
+            </p>
+            <p>
+              Currently researching quantum-safe blockchain at USTHB. My expertise spans from deep learning models to large-scale microservices, ensuring every line of code serves a purpose.
+            </p>
+            <div className="pt-12 border-t border-white/10 grid grid-cols-2 gap-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-4 font-bold">Location</p>
+                <p className="text-white font-black uppercase tracking-tighter text-2xl">Algiers, AL</p>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-4 font-bold">Research</p>
+                <p className="text-white font-black uppercase tracking-tighter text-2xl">PhD • USTHB</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">About Me</h2>
+      {/* Projects Section - Card Layout */}
+      <section id="projects" className="py-40 px-6 section-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+            <div className="space-y-4">
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent">PORTFOLIO</span>
+              <h2 className="text-5xl md:text-7xl font-black uppercase leading-none">Selected<br />Works</h2>
+            </div>
+            <Link href="https://github.com/Greghori101" target="_blank" className="hidden md:flex items-center gap-2 text-xs font-bold tracking-widest uppercase hover:text-accent transition-colors">
+              View All Projects <ArrowUpRight size={16} />
+            </Link>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6 text-muted-foreground">
-              <p className="text-lg leading-relaxed">
-                I approach development with a language-agnostic, architectural mindset, prioritizing problem-solving, database optimization, and clean production pipelines over framework loyalty. My expertise spans from quantum computing research to full-stack application development.
-              </p>
-              <p className="text-lg leading-relaxed">
-                <strong className="text-foreground">Currently:</strong> PhD Candidate at USTHB, researching quantum-safe blockchain and distributed ledger technologies.
-              </p>
-              <p className="text-lg leading-relaxed">
-                <strong className="text-foreground">Background:</strong> Master's in Computer Science from ESI-SBA with a thesis on real-time autospares detection using deep learning. 3+ years of professional software engineering experience.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-2xl p-8 space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Education</h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>
-                    <strong className="text-foreground">PhD, Quantum Computing</strong><br />
-                    USTHB, Algeria (Nov 2025 – Oct 2029)
-                  </p>
-                  <p>
-                    <strong className="text-foreground">Master's, Computer Science</strong><br />
-                    ESI-SBA, Algeria (Sep 2019 – Oct 2024)
-                  </p>
-                </div>
-              </div>
-              <div className="h-px bg-border" />
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Contact</h3>
-                <p className="text-muted-foreground">
-                  <a href="mailto:e.souala@esi-sba.dz" className="text-primary hover:underline">e.souala@esi-sba.dz</a><br />
-                  <a href="tel:+213674680780" className="text-primary hover:underline">+213 674 680 780</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Experience</h2>
-          <div className="space-y-8">
-            {experiences.map((exp, idx) => (
-              <div key={idx} className="bg-background border border-border rounded-2xl p-8 hover:border-primary/50 transition-colors duration-300">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold">{exp.title}</h3>
-                    <p className="text-primary font-medium">{exp.company}</p>
+            {projects.map((project, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative flex flex-col bg-neutral-50 border border-neutral-100 p-8 hover:bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-neutral-200/50"
+              >
+                <Link href={project.link} target="_blank" className="block w-full">
+                  <div className="relative aspect-[16/10] mb-8 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} cover`}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                  <p className="text-sm text-muted-foreground">{exp.period}</p>
-                </div>
-                <p className="text-muted-foreground mb-4">{exp.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-border overflow-hidden">
-        <GeometricBackground />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Featured Projects</h2>
-          <CardCarousel className="py-8">
-            {projects.map((project, idx) => (
-              <Link href={project.link} target="_blank" rel="noopener noreferrer" key={idx} className="w-full h-full block pointer-events-auto">
-                <div className="bg-card border border-border rounded-2xl p-8 h-full hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-6 flex-grow">{project.description}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </CardCarousel>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Skills & Technologies</h2>
-
-          {/* Skill Categories Carousel */}
-          <CardCarousel className="py-8 mb-16">
-            {Object.entries(skills).map(([category, items], idx) => (
-              <div key={idx} className="bg-background border border-border rounded-2xl p-8 h-full w-full">
-                <h3 className="text-lg font-semibold mb-4 text-primary">{category}</h3>
-                <div className="space-y-2">
-                  {items.map((skill, i) => (
-                    <p key={i} className="text-muted-foreground flex items-center">
-                      <span className="text-primary mr-2">▹</span>
-                      {skill}
+                  <div className="space-y-4 flex-grow">
+                    <div className="flex justify-between items-start">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-accent">{project.category}</span>
+                      <ArrowUpRight className="text-neutral-300 group-hover:text-accent transition-colors" size={24} />
+                    </div>
+                    <h3 className="text-3xl font-black uppercase tracking-tighter leading-none group-hover:text-accent transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-neutral-500 leading-snug">
+                      {project.description}
                     </p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </CardCarousel>
+                  </div>
 
-          {/* Tech Logos - Official Logos */}
-          <div className="py-8">
-            <h3 className="text-2xl font-semibold mb-8 text-primary">Official Tech Stack</h3>
-            <TechLogos />
+                  <div className="mt-8 pt-8 border-t border-neutral-100 flex items-center justify-between">
+                    <div className="flex -space-x-3">
+                      {project.tech.map((t, idx) => (
+                        <div key={idx} className="w-10 h-10 rounded-full bg-white border border-neutral-200 p-2 flex items-center justify-center hover:z-20 hover:scale-125 hover:border-accent transition-all duration-300">
+                          <img 
+                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t}/${t}-original.svg`} 
+                            alt={t}
+                            className="w-full h-full object-contain"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (target.src.includes('-original')) {
+                                target.src = target.src.replace('-original', '-plain');
+                              }
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">View Project</span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-border bg-gradient-to-r from-primary/10 via-background to-accent/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to collaborate?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            I'm always interested in innovative projects and opportunities. Let's build something amazing together.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="w-full sm:w-auto">Connect on LinkedIn</Button>
-            </Link>
-            <Link href="https://github.com/Greghori101" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">View GitHub</Button>
-            </Link>
+      {/* Services/Expeience - Structured */}
+      <section id="experience" className="section-black py-32 px-6">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="text-5xl md:text-7xl font-black uppercase mb-20 text-center">Tech<br />Stack</h2>
+          <TechLogos />
+          
+          <div className="mt-32 space-y-px bg-white/10">
+            {experiences.map((exp, i) => (
+              <div key={i} className="group grid md:grid-cols-4 gap-8 py-12 items-center bg-black hover:bg-neutral-900 transition-colors px-8 border-b border-white/10">
+                <span className="text-xs text-neutral-500 font-bold uppercase">{exp.period}</span>
+                <h3 className="text-2xl font-bold uppercase md:col-span-2 group-hover:text-accent transition-colors">{exp.title} @ {exp.company}</h3>
+                <div className="flex md:justify-end">
+                  <ArrowUpRight className="text-neutral-500 group-hover:text-white transition-colors" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="font-semibold mb-4">Navigation</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                {navItems.map(item => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="hover:text-foreground transition-colors">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+      <footer className="py-20 px-6 border-t border-neutral-100 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-20">
+            <div className="space-y-12">
+              <h2 className="text-6xl md:text-[8vw] font-black uppercase tracking-tighter leading-none">
+                BUILD<br />THINGS<span className="text-accent">.</span>
+              </h2>
+              <div className="flex gap-8">
+                <Link href="mailto:e.souala@esi-sba.dz" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Mail size={16} /> Email
+                </Link>
+                <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Linkedin size={16} /> LinkedIn
+                </Link>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Connect</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <Link href="https://github.com/Greghori101" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                    GitHub
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                    LinkedIn
-                  </Link>
-                </li>
-                <li>
-                  <a href="mailto:e.souala@esi-sba.dz" className="hover:text-foreground transition-colors">
-                    Email
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">About</h4>
-              <p className="text-sm text-muted-foreground">
-                PhD Candidate in Quantum Computing specializing in full-stack development and AI integration.
-              </p>
+            
+            <div className="grid grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <p className="text-xs uppercase tracking-widest text-neutral-400">Links</p>
+                <div className="flex flex-col gap-4 text-sm font-bold uppercase font-mono">
+                   {navItems.map(item => (
+                    <Link key={item.href} href={item.href} className="hover:text-accent">{item.label}</Link>
+                   ))}
+                </div>
+              </div>
+              <div className="space-y-6 text-right">
+                <p className="text-xs uppercase tracking-widest text-neutral-400">Social</p>
+                <div className="flex flex-col gap-4 text-sm font-bold uppercase font-mono">
+                  <Link href="https://github.com/Greghori101" target="_blank" className="hover:text-accent">GitHub</Link>
+                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="hover:text-accent">LinkedIn</Link>
+                  <Link href="mailto:e.souala@esi-sba.dz" className="hover:text-accent">Email</Link>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
-            <p>&copy; 2024 Souala Elhoussine. All rights reserved.</p>
-            <p>Built with React, Next.js, and Tailwind CSS</p>
+          
+          {/* Massive Watermark */}
+          <div className="mt-40 pointer-events-none select-none">
+            <h2 className="text-[10vw] font-black uppercase leading-none text-neutral-100 -mb-[5vw] transition-all">
+              HOUSSINE
+            </h2>
           </div>
         </div>
       </footer>
