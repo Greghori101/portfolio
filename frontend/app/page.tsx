@@ -360,20 +360,21 @@ export default function Portfolio() {
                     </p>
                   </div>
 
-                  {/* Tech Stack - Circle Icons */}
+                  {/* Tech Stack - Overlapping Circle Icons */}
                   <div className="mt-8 pt-8 border-t border-border">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
-                    <div className="flex flex-wrap gap-4">
-                      {project.tech.map((t, idx) => (
+                    <div className="relative h-14 flex items-center">
+                      {project.tech.slice(0, 4).map((t, idx) => (
                         <div 
                           key={idx} 
-                          className="group/tech relative w-10 h-10 rounded-full bg-accent/10 border border-accent/30 hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help"
+                          className="group/tech absolute w-12 h-12 rounded-full bg-accent/10 border-2 border-card hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help hover:z-10 hover:scale-125 hover:shadow-lg hover:shadow-accent/30"
+                          style={{ left: `${idx * 2.5}rem` }}
                           title={t}
                         >
                           <img 
                             src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`} 
                             alt={t}
-                            className="w-5 h-5 object-contain"
+                            className="w-6 h-6 object-contain"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               if (target.src.includes('-original')) {
@@ -381,7 +382,7 @@ export default function Portfolio() {
                               }
                             }}
                           />
-                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs px-2 py-1 bg-card border border-border rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                          <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-xs px-2 py-1 bg-card border border-border rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none z-20">
                             {t}
                           </span>
                         </div>
