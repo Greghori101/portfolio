@@ -3,16 +3,18 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap, Dot } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { TechLogos } from '@/components/tech-logos'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
+
 
 const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Research', href: '#research' },
 ]
 
 const experiences = [
@@ -21,6 +23,7 @@ const experiences = [
     company: 'Sobiapi',
     period: '2025',
     description: 'Built AI agent platform with automated workflows. Improved productivity by 40%.',
+    highlight: 'Real-time WebSocket communication & AI automation',
     tech: ['Nest.js', 'Next.js', 'N8n'],
   },
   {
@@ -28,40 +31,50 @@ const experiences = [
     company: 'Apollo Digital Solutions',
     period: '2024 – 2025',
     description: 'Designed three SaaS platforms. Reduced load times by 45% using SSR/ISR.',
+    highlight: '45% frontend performance improvement via advanced caching',
     tech: ['Laravel', 'Next.js', 'Docker'],
+  },
+  {
+    title: 'Software Engineer Intern',
+    company: 'Sonelgaz',
+    period: '2023',
+    description: 'Process automation and infrastructure management.',
+    highlight: '99.9% uptime maintenance & 100% workflow automation',
+    tech: ['PHP', 'JavaScript'],
   },
 ]
 
 const projects = [
   {
-    title: 'Quantum-Safe Blockchain',
-    category: 'PHD RESEARCH',
-    description: 'Thesis project on quantum-safe blockchain and distributed ledger technologies.',
-    image: '/placeholder.jpg',
-    link: 'https://github.com/Greghori101',
-    tech: ['python', 'docker', 'kubernetes', 'postgresql']
-  },
-  {
     title: 'AI Agent Platform',
-    category: 'FULL STACK',
-    description: 'Automated workflows and real-time statistics for real estate.',
-    image: '/placeholder-user.jpg',
+    category: 'SAAS',
+    description: 'Real estate automation SaaS with AI workflows, real-time updates, and automated task scheduling. Includes comprehensive dashboard and analytics.',
     link: 'https://github.com/Greghori101',
-    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb']
+    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb', 'websockets'],
+    featured: true
   },
   {
-    title: 'Autospares Detection',
-    category: 'MACHINE LEARNING',
-    description: 'Computer vision for real-time object detection in autospares.',
-    image: '/placeholder.jpg',
+    title: 'Property Management System',
+    category: 'SAAS',
+    description: 'Full-featured SaaS platform for property management with multi-tenant architecture, real-time notifications, and advanced reporting.',
     link: 'https://github.com/Greghori101',
-    tech: ['python', 'tensorflow', 'pytorch', 'docker']
+    tech: ['laravel', 'nextjs', 'postgresql', 'docker', 'redis'],
+    featured: true
+  },
+  {
+    title: 'Analytics Dashboard',
+    category: 'SAAS',
+    description: 'Enterprise analytics SaaS with real-time data visualization, custom report generation, and predictive analytics powered by ML models.',
+    link: 'https://github.com/Greghori101',
+    tech: ['react', 'nodejs', 'fastapi', 'postgresql', 'tensorflow'],
+    featured: true
   },
 ]
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false)
   
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -70,98 +83,234 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'glass py-4' : 'bg-transparent py-8'}`}>
-        <div className="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+      <motion.nav 
+        className="fixed top-0 w-full z-50 px-6 py-4"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.5 }}
+        pointerEvents={scrolled ? 'none' : 'auto'}
+      >
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
           <Link href="/" className="text-2xl font-black uppercase tracking-tighter">
             Houssine<span className="text-accent">.</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-12">
-            {navItems.map(item => (
-              <Link key={item.href} href={item.href} className="text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">
-                {item.label}
-              </Link>
-            ))}
-            <div className="flex gap-4">
-              <Link href="https://github.com/Greghori101" target="_blank">
-                <Button variant="outline" size="sm" className="rounded-full px-4 font-bold uppercase text-[10px] tracking-widest border-2">
-                  <Github size={14} className="mr-2" /> GitHub
-                </Button>
-              </Link>
-              <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank">
-                <Button size="sm" className="rounded-full px-4 font-bold uppercase text-[10px] tracking-widest">
-                  <Linkedin size={14} className="mr-2" /> LinkedIn
-                </Button>
-              </Link>
-            </div>
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="https://github.com/Greghori101" target="_blank">
+              <Button variant="outline" size="sm" className="rounded-full">
+                <Github size={16} className="mr-2" /> GitHub
+              </Button>
+            </Link>
           </div>
 
           <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </nav>
+      </motion.nav>
+
+      {/* Sticky Navigation Dots */}
+      <motion.div 
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-40"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex flex-col gap-4 px-4 py-7 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300">
+          {navItems.map((item, idx) => (
+            <motion.div
+              key={item.href}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: idx * 0.05 }}
+            >
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={item.href}
+                    className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
+                  >
+                    <span className="sr-only">{item.label}</span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
+                  {item.label}
+                </TooltipContent>
+              </Tooltip>
+            </motion.div>
+          ))}
+          
+          <div className="w-0.5 h-0.5 bg-accent/40 rounded-full mx-auto my-1" />
+          
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: navItems.length * 0.05 }}
+          >
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="https://github.com/Greghori101"
+                  target="_blank"
+                  className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
+                >
+                  <Github size={8} className="text-background opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
+                GitHub
+              </TooltipContent>
+            </Tooltip>
+          </motion.div>
+        </div>
+      </motion.div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 overflow-hidden bg-white">
-        {/* Subtle Background Elements to fill "empty" space */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden">
+        {/* Animated Background Grid */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: 'linear-gradient(to right, var(--color-accent) 1px, transparent 1px), linear-gradient(to bottom, var(--color-accent) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(circle, transparent 0%, black 70%)'
+          }} />
+        </div>
         
         <div className="relative z-10 max-w-[1400px] mx-auto w-full">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center md:items-start space-y-8"
+            className="space-y-12"
           >
-            <div className="overflow-hidden w-full">
-              <motion.div 
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-wrap justify-center md:justify-start gap-6 text-[4vw] md:text-[5vw] font-black uppercase tracking-[0.2em] text-accent w-full leading-none opacity-80"
-              >
-                <span>PHD CANDIDATE & SOFTWARE ENGINEER</span>
-              </motion.div>
-            </div>
-            
-            <div className="w-full">
-              <h1 className="text-[18vw] md:text-[22vw] leading-[0.75] font-black text-mask text-center md:text-left py-10 uppercase tracking-tighter" style={{ backgroundImage: 'url(/text-mask.png)' }}>
-                SOUALA<br />ELHOUSSINE
+            {/* Tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 w-fit"
+            >
+              <Zap size={14} className="text-accent" />
+              <span className="text-xs font-bold uppercase tracking-wider text-accent">PhD Candidate in Quantum Computing</span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-black uppercase leading-tight tracking-tight">
+                Full-Stack Engineer & <br />
+                <span className="bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
+                  AI Systems Designer
+                </span>
               </h1>
-            </div>
-            
-            <div className="w-full flex flex-col md:flex-row gap-12 items-center md:items-end justify-between mt-12">
-              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left max-w-2xl">
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="text-xl md:text-3xl font-medium leading-tight text-neutral-900 tracking-tight"
-                >
-                  Engineering scalable solutions with a language-agnostic mindset. Bridging the gap between academic research and production-ready systems.
-                </motion.p>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-muted-foreground max-w-2xl leading-relaxed"
+            >
+              Architecting scalable systems at the intersection of research and production. Specializing in quantum computing, AI integration, and distributed systems with language-agnostic expertise.
+            </motion.p>
+
+            {/* Stats and CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between pt-8"
+            >
+              <div className="grid grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm uppercase tracking-widest text-muted-foreground font-bold mb-2">Experience</p>
+                  <p className="text-4xl font-black">3+</p>
+                  <p className="text-xs text-muted-foreground">Years</p>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-widest text-muted-foreground font-bold mb-2">Projects</p>
+                  <p className="text-4xl font-black">20+</p>
+                  <p className="text-xs text-muted-foreground">Completed</p>
+                </div>
               </div>
 
-              <div className="flex flex-col items-center md:items-end gap-6 shrink-0">
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center md:items-end p-2 text-primary">
-                    <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-1">Experience</p>
-                    <p className="text-3xl font-black">3+ YEARS</p>
-                  </div>
-                  <div className="w-px h-12 bg-neutral-100 hidden md:block" />
-                  <div className="flex flex-col items-center md:items-end p-2 text-primary">
-                    <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-1">Projects</p>
-                    <p className="text-3xl font-black">20+</p>
-                  </div>
+              <div className="flex gap-4">
+                <Link href="#projects">
+                  <Button className="rounded-full">
+                    View My Work <ArrowUpRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
+                <Link href="mailto:e.souala@esi-sba.dz">
+                  <Button variant="outline" className="rounded-full">
+                    Get In Touch
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex gap-6 pt-12"
+            >
+              <Link href="https://github.com/Greghori101" target="_blank" className="text-muted-foreground hover:text-accent transition-colors">
+                <Github size={24} />
+              </Link>
+              <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="text-muted-foreground hover:text-accent transition-colors">
+                <Linkedin size={24} />
+              </Link>
+              <Link href="mailto:e.souala@esi-sba.dz" className="text-muted-foreground hover:text-accent transition-colors">
+                <Mail size={24} />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="relative py-32 px-6 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid md:grid-cols-2 gap-16"
+          >
+            <div className="space-y-6">
+              <span className="text-xs font-bold uppercase tracking-widest text-accent">About Me</span>
+              <h2 className="text-5xl md:text-6xl font-black uppercase leading-tight">
+                Bridging<br />Research &<br />Production
+              </h2>
+              <div className="w-12 h-1 bg-accent rounded-full" />
+            </div>
+
+            <div className="space-y-8 text-lg text-muted-foreground">
+              <p className="text-foreground text-xl font-medium leading-relaxed">
+                I'm a full-stack software engineer with a language-agnostic architectural mindset, specializing in solving complex problems through clean, production-ready code.
+              </p>
+
+              <p>
+                Currently pursuing a PhD in Quantum Computing at USTHB while working on cutting-edge technologies. My expertise spans deep learning, distributed systems, blockchain technology, and cloud infrastructure.
+              </p>
+
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-3">Location</p>
+                  <p className="text-lg font-black text-foreground uppercase">Algiers, Algeria</p>
                 </div>
-                
-                <div className="flex gap-6">
-                  <Link href="https://github.com/Greghori101" target="_blank" className="text-primary hover:text-accent transition-colors"><Github size={28} /></Link>
-                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="text-primary hover:text-accent transition-colors"><Linkedin size={28} /></Link>
-                  <Link href="mailto:e.souala@esi-sba.dz" className="text-primary hover:text-accent transition-colors"><Mail size={28} /></Link>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-3">Status</p>
+                  <p className="text-lg font-black text-foreground uppercase">PhD • USTHB</p>
                 </div>
               </div>
             </div>
@@ -169,51 +318,23 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* About Section - Black with Background Info */}
-      <section id="about" className="relative section-black py-40 px-6 mt-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay grayscale" 
-             style={{ backgroundImage: 'url(/placeholder.jpg)' }} />
-        
-        <div className="relative z-10 max-w-[1400px] mx-auto grid md:grid-cols-2 gap-20">
-          <div className="space-y-4">
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent">THE INDIVIDUAL</span>
-            <h2 className="text-6xl md:text-8xl font-black uppercase leading-none">THE<br />ENGINEER</h2>
-          </div>
-          <div className="space-y-8 text-xl text-neutral-400">
-            <p className="text-white text-3xl font-medium leading-tight">
-              I approach development with a language-agnostic, architectural mindset, prioritizing problem-solving and clean production pipelines.
-            </p>
-            <p>
-              Currently researching quantum-safe blockchain at USTHB. My expertise spans from deep learning models to large-scale microservices, ensuring every line of code serves a purpose.
-            </p>
-            <div className="pt-12 border-t border-white/10 grid grid-cols-2 gap-8">
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-4 font-bold">Location</p>
-                <p className="text-white font-black uppercase tracking-tighter text-2xl">Algiers, AL</p>
-              </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-white/40 mb-4 font-bold">Research</p>
-                <p className="text-white font-black uppercase tracking-tighter text-2xl">PhD • USTHB</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section - Card Layout */}
-      <section id="projects" className="py-40 px-6 section-white overflow-hidden">
+      {/* Projects Section */}
+      <section id="projects" className="py-32 px-6 overflow-hidden">
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-            <div className="space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent">PORTFOLIO</span>
-              <h2 className="text-5xl md:text-7xl font-black uppercase leading-none">Selected<br />Works</h2>
-            </div>
-            <Link href="https://github.com/Greghori101" target="_blank" className="hidden md:flex items-center gap-2 text-xs font-bold tracking-widest uppercase hover:text-accent transition-colors">
-              View All Projects <ArrowUpRight size={16} />
-            </Link>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-4 mb-20"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-accent">Featured Projects</span>
+            <h2 className="text-5xl md:text-6xl font-black uppercase leading-tight">
+              Selected<br />Works & Research
+            </h2>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => (
               <motion.div 
                 key={i}
@@ -221,40 +342,39 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative flex flex-col bg-neutral-50 border border-neutral-100 p-8 hover:bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-neutral-200/50"
+                className="group relative flex flex-col h-full bg-card border border-border hover:border-accent/50 p-8 transition-all duration-500 overflow-hidden"
               >
-                <Link href={project.link} target="_blank" className="block w-full">
-                  <div className="relative aspect-[16/10] mb-8 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} cover`}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-
+                <Link href={project.link} target="_blank" className="flex flex-col h-full">
                   <div className="space-y-4 flex-grow">
                     <div className="flex justify-between items-start">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-accent">{project.category}</span>
-                      <ArrowUpRight className="text-neutral-300 group-hover:text-accent transition-colors" size={24} />
+                      <span className="text-xs font-bold uppercase tracking-widest text-accent">{project.category}</span>
+                      <ArrowUpRight className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" size={20} />
                     </div>
-                    <h3 className="text-3xl font-black uppercase tracking-tighter leading-none group-hover:text-accent transition-colors">
+                    
+                    <h3 className="text-2xl font-black uppercase tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-neutral-500 leading-snug">
+                    
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {project.description}
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-8 border-t border-neutral-100 flex items-center justify-between">
-                    <div className="flex -space-x-3">
-                      {project.tech.map((t, idx) => (
-                        <div key={idx} className="w-10 h-10 rounded-full bg-white border border-neutral-200 p-2 flex items-center justify-center hover:z-20 hover:scale-125 hover:border-accent transition-all duration-300">
+                  {/* Tech Stack - Overlapping Circle Icons */}
+                  <div className="mt-8 pt-8 border-t border-border">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
+                    <div className="relative h-14 flex items-center">
+                      {project.tech.slice(0, 4).map((t, idx) => (
+                        <div 
+                          key={idx} 
+                          className="group/tech absolute w-12 h-12 rounded-full bg-accent/10 border-2 border-card hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help hover:z-10 hover:scale-125 hover:shadow-lg hover:shadow-accent/30"
+                          style={{ left: `${idx * 2.5}rem` }}
+                          title={t}
+                        >
                           <img 
-                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t}/${t}-original.svg`} 
+                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`} 
                             alt={t}
-                            className="w-full h-full object-contain"
+                            className="w-6 h-6 object-contain"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               if (target.src.includes('-original')) {
@@ -262,81 +382,223 @@ export default function Portfolio() {
                               }
                             }}
                           />
+                          <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-xs px-2 py-1 bg-card border border-border rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none z-20">
+                            {t}
+                          </span>
                         </div>
                       ))}
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">View Project</span>
                   </div>
                 </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <Link href="https://github.com/Greghori101" target="_blank" className="inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-accent transition-colors">
+              View All Projects <ArrowUpRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-32 px-6 overflow-hidden border-t border-border">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-4 mb-20"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-accent">Professional Journey</span>
+            <h2 className="text-5xl md:text-6xl font-black uppercase leading-tight">
+              Work<br />Experience
+            </h2>
+          </motion.div>
+
+          {/* Tech Stack */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-20 pb-20 border-b border-border"
+          >
+            <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-8">Core Technologies</p>
+            <TechLogos />
+          </motion.div>
+
+          {/* Experience Timeline */}
+          <div className="space-y-4">
+            {experiences.map((exp, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group grid md:grid-cols-4 gap-6 py-8 px-6 rounded-lg border border-border hover:border-accent/50 bg-card hover:bg-secondary transition-all duration-300"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">{exp.period}</p>
+                </div>
+
+                <div className="md:col-span-2 space-y-3">
+                  <h3 className="text-xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">
+                    {exp.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-semibold">{exp.company}</p>
+                  <p className="text-xs text-accent font-bold">{exp.highlight}</p>
+                </div>
+
+                <div className="flex md:justify-end pt-4 md:pt-0">
+                  <ArrowUpRight className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" size={20} />
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services/Expeience - Structured */}
-      <section id="experience" className="section-black py-32 px-6">
+      {/* Research Section */}
+      <section id="research" className="py-32 px-6 overflow-hidden border-t border-border">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-5xl md:text-7xl font-black uppercase mb-20 text-center">Tech<br />Stack</h2>
-          <TechLogos />
-          
-          <div className="mt-32 space-y-px bg-white/10">
-            {experiences.map((exp, i) => (
-              <div key={i} className="group grid md:grid-cols-4 gap-8 py-12 items-center bg-black hover:bg-neutral-900 transition-colors px-8 border-b border-white/10">
-                <span className="text-xs text-neutral-500 font-bold uppercase">{exp.period}</span>
-                <h3 className="text-2xl font-bold uppercase md:col-span-2 group-hover:text-accent transition-colors">{exp.title} @ {exp.company}</h3>
-                <div className="flex md:justify-end">
-                  <ArrowUpRight className="text-neutral-500 group-hover:text-white transition-colors" />
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid md:grid-cols-2 gap-16"
+          >
+            <div className="space-y-6">
+              <span className="text-xs font-bold uppercase tracking-widest text-accent">Research & Education</span>
+              <h2 className="text-5xl md:text-6xl font-black uppercase leading-tight">
+                Academic<br />Expertise
+              </h2>
+              <div className="w-12 h-1 bg-accent rounded-full" />
+            </div>
+
+            <div className="space-y-8 text-lg text-muted-foreground">
+              <div>
+                <h3 className="text-2xl font-black text-foreground mb-3">PhD in Quantum Computing</h3>
+                <p className="text-foreground font-semibold mb-2">USTHB University • 2025-2029</p>
+                <p className="leading-relaxed">
+                  Thesis: <span className="text-accent font-semibold">Quantum-Safe Blockchain and Distributed Ledger Technologies</span>. Researching post-quantum cryptography and the intersection of quantum computing with blockchain security.
+                </p>
               </div>
-            ))}
-          </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-foreground mb-3">Master's in Computer Science</h3>
+                <p className="text-foreground font-semibold mb-2">ESI-SBA University • 2019-2024</p>
+                <p className="leading-relaxed">
+                  Thesis: <span className="text-accent font-semibold">Real-time Autospares Detection using Deep Learning</span>. Developed CNN models for real-time object detection in automotive applications.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Combining academic rigor with practical engineering, focused on making quantum-safe systems production-ready and accessible.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-24 px-6 border-t border-border overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-[1400px] mx-auto text-center space-y-8"
+        >
+          <h2 className="text-4xl md:text-5xl font-black uppercase leading-tight">
+            Got a project in mind?<br />
+            <span className="text-accent">Let's build something great</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Whether it's a quantum-safe system, AI integration, or scalable architecture, I'm ready to turn ideas into production-ready solutions.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
+            <Link href="mailto:e.souala@esi-sba.dz">
+              <Button size="lg" className="rounded-full">
+                Start a Conversation
+              </Button>
+            </Link>
+            <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank">
+              <Button size="lg" variant="outline" className="rounded-full">
+                Connect on LinkedIn
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer className="py-20 px-6 border-t border-neutral-100 overflow-hidden">
+      <footer className="py-16 px-6 border-t border-border overflow-hidden">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-20">
-            <div className="space-y-12">
-              <h2 className="text-6xl md:text-[8vw] font-black uppercase tracking-tighter leading-none">
-                BUILD<br />THINGS<span className="text-accent">.</span>
-              </h2>
-              <div className="flex gap-8">
-                <Link href="mailto:e.souala@esi-sba.dz" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                  <Mail size={16} /> Email
-                </Link>
-                <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                  <Linkedin size={16} /> LinkedIn
-                </Link>
-              </div>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-black uppercase">Souala<span className="text-accent">.</span></h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Full-stack engineer building scalable systems at the intersection of AI and quantum computing research.
+              </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <p className="text-xs uppercase tracking-widest text-neutral-400">Links</p>
-                <div className="flex flex-col gap-4 text-sm font-bold uppercase font-mono">
-                   {navItems.map(item => (
-                    <Link key={item.href} href={item.href} className="hover:text-accent">{item.label}</Link>
-                   ))}
+            <div className="grid grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Navigation</p>
+                <div className="flex flex-col gap-3 text-sm">
+                  {navItems.map(item => (
+                    <Link key={item.href} href={item.href} className="hover:text-accent transition-colors">
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               </div>
-              <div className="space-y-6 text-right">
-                <p className="text-xs uppercase tracking-widest text-neutral-400">Social</p>
-                <div className="flex flex-col gap-4 text-sm font-bold uppercase font-mono">
-                  <Link href="https://github.com/Greghori101" target="_blank" className="hover:text-accent">GitHub</Link>
-                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="hover:text-accent">LinkedIn</Link>
-                  <Link href="mailto:e.souala@esi-sba.dz" className="hover:text-accent">Email</Link>
+
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Social</p>
+                <div className="flex flex-col gap-3 text-sm">
+                  <Link href="https://github.com/Greghori101" target="_blank" className="hover:text-accent transition-colors">
+                    GitHub
+                  </Link>
+                  <Link href="https://www.linkedin.com/in/hoceyne/" target="_blank" className="hover:text-accent transition-colors">
+                    LinkedIn
+                  </Link>
+                  <Link href="mailto:e.souala@esi-sba.dz" className="hover:text-accent transition-colors">
+                    Email
+                  </Link>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Contact</p>
+                <div className="flex flex-col gap-3 text-sm">
+                  <a href="mailto:e.souala@esi-sba.dz" className="hover:text-accent transition-colors">
+                    e.souala@esi-sba.dz
+                  </a>
+                  <a href="tel:+213674680780" className="hover:text-accent transition-colors">
+                    +213 67 468 0780
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Massive Watermark */}
-          <div className="mt-40 pointer-events-none select-none">
-            <h2 className="text-[10vw] font-black uppercase leading-none text-neutral-100 -mb-[5vw] transition-all">
-              HOUSSINE
-            </h2>
+
+          <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-muted-foreground">© 2026 Souala Elhoussine. All rights reserved.</p>
+            <p className="text-xs text-muted-foreground">Built with React, Next.js & Tailwind CSS</p>
           </div>
         </div>
       </footer>
