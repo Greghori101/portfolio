@@ -44,30 +44,27 @@ const experiences = [
 
 const projects = [
   {
-    title: 'Quantum-Safe Blockchain',
-    category: 'PHD RESEARCH',
-    description: 'Thesis on quantum-resistant cryptography for distributed ledgers.',
-    image: '/placeholder.jpg',
-    link: 'https://github.com/Greghori101',
-    tech: ['python', 'docker', 'kubernetes', 'postgresql'],
-    featured: true
-  },
-  {
     title: 'AI Agent Platform',
-    category: 'FULL STACK',
-    description: 'Real estate automation with AI workflows and real-time updates.',
-    image: '/placeholder-user.jpg',
+    category: 'SAAS',
+    description: 'Real estate automation SaaS with AI workflows, real-time updates, and automated task scheduling. Includes comprehensive dashboard and analytics.',
     link: 'https://github.com/Greghori101',
-    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb'],
+    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb', 'websockets'],
     featured: true
   },
   {
-    title: 'Autospares Detection',
-    category: 'DEEP LEARNING',
-    description: 'Real-time computer vision for automotive parts recognition.',
-    image: '/placeholder.jpg',
+    title: 'Property Management System',
+    category: 'SAAS',
+    description: 'Full-featured SaaS platform for property management with multi-tenant architecture, real-time notifications, and advanced reporting.',
     link: 'https://github.com/Greghori101',
-    tech: ['python', 'tensorflow', 'pytorch', 'docker'],
+    tech: ['laravel', 'nextjs', 'postgresql', 'docker', 'redis'],
+    featured: true
+  },
+  {
+    title: 'Analytics Dashboard',
+    category: 'SAAS',
+    description: 'Enterprise analytics SaaS with real-time data visualization, custom report generation, and predictive analytics powered by ML models.',
+    link: 'https://github.com/Greghori101',
+    tech: ['react', 'nodejs', 'fastapi', 'postgresql', 'tensorflow'],
     featured: true
   },
 ]
@@ -278,7 +275,7 @@ export default function Portfolio() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => (
               <motion.div 
                 key={i}
@@ -289,18 +286,6 @@ export default function Portfolio() {
                 className="group relative flex flex-col h-full bg-card border border-border hover:border-accent/50 p-8 transition-all duration-500 overflow-hidden"
               >
                 <Link href={project.link} target="_blank" className="flex flex-col h-full">
-                  {/* Image */}
-                  <div className="relative aspect-[16/10] mb-6 overflow-hidden rounded-lg -mx-8 -mt-8 mb-8 group-hover:shadow-xl group-hover:shadow-accent/10 transition-all duration-500">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} cover`}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-
                   <div className="space-y-4 flex-grow">
                     <div className="flex justify-between items-start">
                       <span className="text-xs font-bold uppercase tracking-widest text-accent">{project.category}</span>
@@ -316,19 +301,32 @@ export default function Portfolio() {
                     </p>
                   </div>
 
-                  {/* Tech Stack */}
-                  <div className="mt-8 pt-8 border-t border-border flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.slice(0, 3).map((t, idx) => (
-                        <span key={idx} className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent font-medium uppercase tracking-wider">
-                          {t}
-                        </span>
+                  {/* Tech Stack - Circle Icons */}
+                  <div className="mt-8 pt-8 border-t border-border">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
+                    <div className="flex flex-wrap gap-4">
+                      {project.tech.map((t, idx) => (
+                        <div 
+                          key={idx} 
+                          className="group/tech relative w-10 h-10 rounded-full bg-accent/10 border border-accent/30 hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help"
+                          title={t}
+                        >
+                          <img 
+                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`} 
+                            alt={t}
+                            className="w-5 h-5 object-contain"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (target.src.includes('-original')) {
+                                target.src = target.src.replace('-original', '-plain');
+                              }
+                            }}
+                          />
+                          <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs px-2 py-1 bg-card border border-border rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                            {t}
+                          </span>
+                        </div>
                       ))}
-                      {project.tech.length > 3 && (
-                        <span className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground font-medium">
-                          +{project.tech.length - 3}
-                        </span>
-                      )}
                     </div>
                   </div>
                 </Link>

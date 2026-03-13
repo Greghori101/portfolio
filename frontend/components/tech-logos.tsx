@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 interface TechLogo {
   name: string
@@ -27,31 +28,50 @@ const technologies: TechLogo[] = [
   { name: 'AWS', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', alt: 'AWS' },
 ]
 
+// Duplicate array for seamless infinite scroll
+const duplicatedTechs = [...technologies, ...technologies]
+
 export function TechLogos() {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-16 gap-x-12 max-w-6xl mx-auto">
-      {technologies.map((tech) => (
-        <motion.div
-          key={tech.name}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="group flex flex-col items-center justify-center transition-all duration-500"
-        >
-          <div className="relative w-14 h-14 mb-6 grayscale group-hover:grayscale-0 transition-all duration-500 opacity-40 group-hover:opacity-100 group-hover:scale-110">
-            <Image
-              src={tech.src}
-              alt={tech.alt}
-              fill
-              className="object-contain"
-              priority={false}
-            />
-          </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-accent transition-colors">
-            {tech.name}
-          </p>
-        </motion.div>
-      ))}
+    <div className="w-full overflow-hidden">
+      <motion.div
+        initial={{ x: 0 }}
+        animate={isHovered ? { x: 0 } : { x: -1920 }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: 'linear',
+          repeatType: 'loop',
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="flex gap-8 py-8 cursor-grab active:cursor-grabbing"
+      >
+        {duplicatedTechs.map((tech, idx) => (
+          <motion.div
+            key={`${tech.name}-${idx}`}
+            className="group flex flex-col items-center justify-center flex-shrink-0"
+            whileHover={{ scale: 1.15 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="relative w-16 h-16 rounded-full bg-accent/10 border border-accent/30 hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-accent/20">
+              <Image
+                src={tech.src}
+                alt={tech.alt}
+                width={32}
+                height={32}
+                className="object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                priority={false}
+              />
+            </div>
+            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground group-hover:text-accent transition-colors mt-3 whitespace-nowrap">
+              {tech.name}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   )
 }
