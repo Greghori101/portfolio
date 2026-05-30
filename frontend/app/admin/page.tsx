@@ -1,0 +1,76 @@
+'use client'
+
+import { useAtomValue } from 'jotai'
+import { userAtom, isAuthenticatedAtom } from '@/lib/auth-atoms'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { FileText, Plus, LayoutDashboard } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
+export default function AdminDashboard() {
+  const user = useAtomValue(userAtom)
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom)
+  const router = useRouter()
+
+  useEffect(() => {
+    if ( !isAuthenticated) {
+      router.push('/login')
+    }
+  }, [isAuthenticated, router])
+
+  if (!isAuthenticated || !user) return null
+
+  return (
+    <div className="min-h-screen p-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-8">
+          <LayoutDashboard className="h-6 w-6 text-primary" />
+          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <Link href="/admin/blogs">
+            <Card className="hover:border-primary/50 transition-all duration-300 group">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-primary" />
+                  Blog Posts
+                </CardTitle>
+                <CardDescription>Manage your blog articles</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                  View, edit, and manage all your published and draft articles.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/admin/blogs/new">
+            <Card className="hover:border-primary/50 transition-all duration-300 group">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Plus className="h-5 w-5 text-primary" />
+                  New Article
+                </CardTitle>
+                <CardDescription>Create a new blog post</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                  Write a new article using the rich text editor with image upload support.
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
+
+        <div className="mt-8 p-4 rounded-lg bg-muted/50">
+          <p className="text-sm text-muted-foreground">
+            Logged in as <strong>{user.name}</strong> ({user.email})
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}

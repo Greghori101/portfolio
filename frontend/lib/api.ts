@@ -5,6 +5,37 @@ export interface ApiResponse<T = unknown> {
   error?: string
 }
 
+export interface BlogData {
+  id: number;
+  title: string;
+  slug: string;
+  description: string | null;
+  cover_image: string | null;
+  content_json: unknown;
+  content_markdown: string | null;
+  author_id: number;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+  author: {
+    id: number;
+    name: string;
+    email: string;
+  };
+  tags: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
+}
+
+export interface TagData {
+  id: number;
+  name: string;
+  slug: string;
+  blogs_count: number;
+}
+
 async function fetchApi<T>(
   endpoint: string,
   options: RequestInit = {}
@@ -57,5 +88,62 @@ export const mediaApi = {
     return fetchApi<{ message: string }>(`/media/${mediaId}`, {
       method: 'DELETE',
     })
+  },
+}
+
+export const blogApi = {
+  async list(params?: { published?: boolean; tag?: string; per_page?: number }) {
+    const query = new URLSearchParams();
+    if (params?.published) query.set('published', 'true');
+    if (params?.tag) query.set('tag', params.tag);
+    if (params?.per_page) query.set('per_page', String(params.per_page));
+    const qs = query.toString();
+    return fetchApi<{ data: BlogData[]; meta: Record<string, unknown> }>(`/blogs${qs ? `?${qs}` : ''}`);
+  },
+
+  async show(slug: string) {
+    return fetchApi<{ blog: BlogData }>(`/blogs/${slug}`);
+  },
+
+  async store(data: {
+    title: string;
+    description?: string;
+    cover_image?: string;
+    content_json?: unknown;
+    content_markdown?: string;
+    tags?: string[];
+    published?: boolean;
+  }) {
+    return fetchApi<{ blog: BlogData }>('/blogs', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async update(slug: string, data: Partial<{
+    title: string;
+    description: string;
+    cover_image: string;
+    content_json: unknown;
+    content_markdown: string;
+    tags: string[];
+    published: boolean;
+  }>) {
+    return fetchApi<{ blog: BlogData }>(`/blogs/${slug}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async destroy(slug: string) {
+    return fetchApi<{ message: string }>(`/blogs/${slug}`, {
+      method: 'DELETE',
+    });
+  },
+}
+
+export const tagApi = {
+  async list() {
+    return fetchApi<{ tags: TagData[] }>('/tags');
   },
 }
