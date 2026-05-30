@@ -1,0 +1,212 @@
+# Portfolio Project — Souala Elhoussine
+
+## Project Overview
+A professional portfolio website + backend API for **Souala Elhoussine** — a Full-Stack Engineer, AI Systems Designer, and PhD Candidate in Quantum Computing at USTHB University. The project uses a **Laravel 13 backend** and a **Next.js 16 / React 19 frontend** with Docker containerization.
+
+**GitHub**: https://github.com/Greghori101/portfolio  
+**Live**: https://portfolio.level-up-org.com  
+**Owner**: Souala Elhoussine — e.souala@esi-sba.dz
+
+---
+
+## Directory Structure
+
+```
+portfolio/
+├── docker-compose.yml              # Orchestrates frontend + backend services (Traefik reverse proxy)
+│
+├── backend/                        # Laravel 13 API application
+│   ├── Dockerfile                  # FrankenPHP-based PHP container
+│   ├── entrypoint.sh               # Container startup script
+│   ├── Caddyfile.frankenphp        # Caddy/FrankenPHP config
+│   ├── composer.json               # Laravel 13.8, PHP ^8.3
+│   ├── .env.example                # Environment template
+│   ├── artisan                     # Laravel CLI
+│   ├── vite.config.js              # Vite bundler config
+│   ├── package.json                # Node deps (Vite, etc.)
+│   ├── phpunit.xml                 # PHPUnit/Pest config
+│   │
+│   ├── app/
+│   │   ├── Http/Controllers/
+│   │   │   └── Controller.php      # Base controller
+│   │   ├── Models/
+│   │   │   └── User.php            # Default user model
+│   │   └── Providers/
+│   │       └── AppServiceProvider.php
+│   │
+│   ├── bootstrap/
+│   │   ├── app.php
+│   │   └── providers.php
+│   │
+│   ├── config/                     # Laravel config files
+│   │   ├── app.php, auth.php, cache.php, database.php
+│   │   ├── filesystems.php, logging.php, mail.php
+│   │   ├── queue.php, services.php, session.php
+│   │
+│   ├── database/
+│   │   ├── factories/UserFactory.php
+│   │   ├── migrations/
+│   │   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   │   └── 0001_01_01_000002_create_jobs_table.php
+│   │   └── seeders/DatabaseSeeder.php
+│   │
+│   ├── public/                     # App entry point + built assets
+│   │   ├── index.php
+│   │   ├── .htaccess
+│   │   ├── favicon.ico, robots.txt
+│   │   └── build/                  # Vite-compiled assets (CSS/JS/fonts)
+│   │
+│   ├── resources/
+│   │   ├── css/app.css             # Tailwind CSS entry
+│   │   ├── js/app.js               # Alpine.js/Vue entry
+│   │   └── views/welcome.blade.php # Fallback view
+│   │
+│   ├── routes/
+│   │   ├── web.php                 # Web routes
+│   │   └── console.php             # Artisan commands
+│   │
+│   ├── storage/                    # Laravel storage (not tracked)
+│   ├── tests/                      # Pest/PHPUnit tests
+│   └── bootstrap/cache/            # Cache (not tracked)
+│
+├── frontend/                       # Next.js 16 + React 19 application
+│   ├── Dockerfile                  # Multi-stage Next.js build container
+│   ├── next.config.mjs             # Next.js configuration
+│   ├── tsconfig.json               # TypeScript configuration
+│   ├── postcss.config.mjs          # PostCSS with Tailwind v4
+│   ├── eslint.config.mjs           # ESLint flat config
+│   ├── components.json             # shadcn/ui configuration
+│   ├── package.json                # Next 16.1, React 19.2, Framer Motion 12
+│   ├── pnpm-lock.yaml / package-lock.json
+│   │
+│   ├── app/                        # App Router pages
+│   │   ├── layout.tsx              # Root layout (providers, theme, fonts)
+│   │   ├── page.tsx                # Main portfolio page (711 lines)
+│   │   ├── globals.css             # Global styles
+│   │
+│   ├── components/
+│   │   ├── card-carousel.tsx       # Project card carousel
+│   │   ├── geometric-background.tsx # Animated geometric shapes background
+│   │   ├── hero-geometric.tsx      # Hero section with geometric pattern
+│   │   ├── tech-logos.tsx          # Tech stack logomarks
+│   │   ├── theme-provider.tsx      # next-themes wrapper
+│   │   ├── theme-toggle.tsx        # Dark/light mode toggle
+│   │   │
+│   │   └── ui/                     # shadcn/ui components (~50 components)
+│   │       ├── accordion.tsx, alert-dialog.tsx, alert.tsx
+│   │       ├── aspect-ratio.tsx, avatar.tsx, badge.tsx
+│   │       ├── breadcrumb.tsx, button.tsx, button-group.tsx
+│   │       ├── calendar.tsx, card.tsx, carousel.tsx
+│   │       ├── chart.tsx, checkbox.tsx, collapsible.tsx
+│   │       ├── command.tsx, context-menu.tsx, dialog.tsx
+│   │       ├── drawer.tsx, dropdown-menu.tsx, empty.tsx
+│   │       ├── field.tsx, form.tsx, hover-card.tsx
+│   │       ├── input.tsx, input-group.tsx, input-otp.tsx
+│   │       ├── item.tsx, kbd.tsx, label.tsx, menubar.tsx
+│   │       ├── navigation-menu.tsx, pagination.tsx, popover.tsx
+│   │       ├── progress.tsx, radio-group.tsx, resizable.tsx
+│   │       ├── scroll-area.tsx, select.tsx, separator.tsx
+│   │       ├── sheet.tsx, sidebar.tsx, skeleton.tsx
+│   │       ├── slider.tsx, sonner.tsx, spinner.tsx
+│   │       ├── switch.tsx, table.tsx, tabs.tsx
+│   │       ├── textarea.tsx, toast.tsx, toaster.tsx
+│   │       ├── toggle.tsx, toggle-group.tsx, tooltip.tsx
+│   │       ├── use-mobile.tsx, use-toast.ts
+│   │
+│   ├── hooks/
+│   │   ├── use-mobile.ts           # Mobile device detection hook
+│   │   └── use-toast.ts            # Toast notification hook
+│   │
+│   ├── lib/
+│   │   └── utils.ts                # cn() utility (clsx + tailwind-merge)
+│   │
+│   ├── styles/
+│   │   └── globals.css             # Additional global styles
+│   │
+│   └── public/                     # Static assets
+│       ├── favicon.ico, apple-touch-icon.png
+│       ├── favicon-16x16.png, favicon-32x32.png
+│       ├── android-chrome-192x192.png, android-chrome-512x512.png
+│       └── site.webmanifest
+│
+└── skills/                         # Cline skills (context/rules)
+    ├── backend-laravel-13.md       # Laravel 13 best practices & principles
+    ├── frontend-react-19.md        # React 19 best practices & principles
+    └── souala-elhoussine.md        # Bio — Souala Elhoussine
+```
+
+---
+
+## Technology Stack
+
+### Backend (Laravel 13)
+| Tech | Version | Purpose |
+|------|---------|---------|
+| PHP | ^8.3 | Language runtime |
+| Laravel Framework | ^13.8 | Full-stack framework |
+| FrankenPHP | — | PHP app server (Caddy-based) |
+| Vite | — | Asset bundling |
+| Pest | ^4.7 | Testing framework |
+| Laravel Pail | ^1.2.5 | Real-time log viewer |
+| Laravel Pint | ^1.27 | Code formatter |
+
+### Frontend (Next.js 16 + React 19)
+| Tech | Version | Purpose |
+|------|---------|---------|
+| Next.js | 16.1.6 | React framework (App Router) |
+| React | 19.2.4 | UI library |
+| TypeScript | 5.7.3 | Type safety |
+| Tailwind CSS | ^4.2.0 | Utility-first CSS |
+| Framer Motion | ^12.34.3 | Animation library |
+| Radix UI | Various | Accessible UI primitives |
+| shadcn/ui | — | Component system |
+| Lucide React | ^0.564.0 | Icon library |
+| next-themes | ^0.4.6 | Theme (dark/light mode) |
+| Recharts | 2.15.0 | Charts |
+| Date-fns | 4.1.0 | Date formatting |
+| Zod | ^3.24.1 | Schema validation |
+| React Hook Form | ^7.54.1 | Form management |
+| Sonner | ^1.7.1 | Toast notifications |
+| Embla Carousel | 8.6.0 | Carousel component |
+
+### Infrastructure
+| Tech | Purpose |
+|------|---------|
+| Docker | Containerization (multi-service) |
+| Traefik | Reverse proxy + SSL (Let's Encrypt) |
+| FrankenPHP | Production PHP server |
+| Alpine.js | Backend UI interactivity (Laravel default) |
+
+---
+
+## Architecture
+
+- **Frontend**: Next.js 16 App Router with static/dynamic rendering, hosted in Docker container
+- **Backend**: Laravel 13 REST API with FrankenPHP in Docker
+- **Networking**: Both containers run behind Traefik reverse proxy on `portfolio.level-up-org.com`
+- **Theming**: Client-side dark/light mode via `next-themes` + Tailwind CSS dark variant
+
+## Key Pages / Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Main portfolio page |
+| `#about` | About section (scroll) |
+| `#experience` | Work experience + tech stack |
+| `#projects` | Featured projects |
+| `#research` | Academic research & education |
+
+## Data / Content (on frontend `page.tsx`)
+
+- **Nav**: About, Experience, Projects, Research
+- **Experiences**: 3 entries (SobiAPI, Apollo Digital Solutions, Sonelgaz)
+- **Projects**: 3 entries (AI Agent Platform, Property Management System, Analytics Dashboard)
+- **Research**: PhD in Quantum Computing at USTHB, Master's at ESI-SBA
+- **Contacts**: GitHub, LinkedIn, Email, Phone (+213 67 468 0780)
+
+## Skills / Context Files
+
+- `backend-laravel-13.md` — SOLID principles, Eloquent ORM best practices, API development, testing (Pest), queues, caching, security, performance, deployment
+- `frontend-react-19.md` — Component architecture, hooks, state management (React Query/Zustand), Next.js patterns, shadcn/ui, form validation, accessibility, performance
+- `souala-elhoussine.md` — Full biography of Souala Elhoussine (education at ESI-SBA, PhD at USTHB, work experience, research interests in quantum computing)

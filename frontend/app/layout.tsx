@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Provider as JotaiProvider } from 'jotai'
 import { ThemeProvider } from '@/components/theme-provider'
+import { AuthInitializer } from '@/components/auth-initializer'
 import './globals.css'
 
 const inter = Inter({ subsets: ["latin"], weight: ['400', '700', '900'] });
@@ -29,7 +31,11 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased selection:bg-accent selection:text-white bg-background text-foreground transition-colors duration-500`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <JotaiProvider>
+            <AuthInitializer>
+              {children}
+            </AuthInitializer>
+          </JotaiProvider>
         </ThemeProvider>
       </body>
     </html>
