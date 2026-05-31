@@ -5,6 +5,7 @@ import { ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import NavigationDots from '@/components/navigation-dots'
+import Image from 'next/image'
 
 
 const navItems = [
@@ -337,9 +338,11 @@ export default function Portfolio() {
                           style={{ left: `${idx * 2.5}rem` }}
                           title={t}
                         >
-                          <img
+                          <Image
                             src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`}
                             alt={t}
+                            width={24}
+                            height={24}
                             className="w-6 h-6 object-contain"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;

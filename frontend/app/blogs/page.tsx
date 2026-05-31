@@ -33,7 +33,7 @@ export default function BlogsPage() {
     const matchesTag = selectedTag ? blog.tags.some((t) => t.slug === selectedTag) : true
     const matchesSearch = searchQuery
       ? blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.description?.toLowerCase().includes(searchQuery.toLowerCase())
+      blog.description?.toLowerCase().includes(searchQuery.toLowerCase())
       : true
     return matchesTag && matchesSearch
   })
@@ -77,11 +77,10 @@ export default function BlogsPage() {
               <div className="flex flex-wrap lg:flex-col gap-2">
                 <button
                   onClick={() => setSelectedTag(null)}
-                  className={`text-left text-sm px-3 py-1.5 rounded-md transition-colors ${
-                    selectedTag === null
+                  className={`text-left text-sm px-3 py-1.5 rounded-md transition-colors ${selectedTag === null
                       ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                  }`}
+                    }`}
                 >
                   All Articles
                 </button>
@@ -89,11 +88,10 @@ export default function BlogsPage() {
                   <button
                     key={tag.id}
                     onClick={() => setSelectedTag(tag.slug)}
-                    className={`text-left text-sm px-3 py-1.5 rounded-md transition-colors ${
-                      selectedTag === tag.slug
+                    className={`text-left text-sm px-3 py-1.5 rounded-md transition-colors ${selectedTag === tag.slug
                         ? 'bg-primary/10 text-primary font-medium'
                         : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                    }`}
+                      }`}
                   >
                     {tag.name}
                     <span className="ml-2 text-xs text-muted-foreground">

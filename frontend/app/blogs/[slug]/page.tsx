@@ -46,7 +46,7 @@ export default function BlogDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold">Article not found</h2>
-          <p className="text-muted-foreground">The article you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground">The article you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/blogs"
             className="inline-flex items-center gap-2 text-primary hover:underline"
