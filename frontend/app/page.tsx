@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
+import NavigationDots from '@/components/navigation-dots'
 
 
 const navItems = [
+  { label: 'Home', href: '/#home' },
   { label: 'About', href: '/#about' },
   { label: 'Experience', href: '/#experience' },
   { label: 'Projects', href: '/#projects' },
@@ -98,77 +98,44 @@ const projects = [
   },
 ]
 
-export default function Portfolio() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const educations = [
+  {
+    "title": "PhD in Quantum Computing",
+    "at": "USTHB University",
+    "start": "Nov. 2025",
+    "end": "Oct. 2029",
+    "description": "",
+    "thesis": "Quantum-Safe Blockchain and Distributed Ledger Technologies.",
+    "details": "Researching post-quantum cryptography and the intersection of quantum computing with blockchain security."
+  },
+  {
+    "title": "Master's in Computer Science",
+    "at": "Higher School of Computer Science ESI-SBA",
+    "start": "Sep. 2019",
+    "end": "Oct. 2024",
+    "description": "",
+    "thesis": "Real-time Autospares Detection using Deep Learning.",
+    "details": "Developed CNN models for real-time object detection in automotive applications."
+  },
+  {
+    "title": "Engineer in Computer Science",
+    "at": "Higher School of Computer Science ESI-SBA",
+    "start": "Sep. 2019",
+    "end": "Oct. 2024",
+    "description": "",
+    "thesis": "AutoHub Startup.",
+    "details": "platform and mobile app for automative services with three core functionalities; autospares marketplace with AI search (like circel to search by Google), Uber like towing services, mechanic and client cordination and comunication"
+  }
+]
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+export default function Portfolio() {
 
   return (
     <>
-      {/* Sticky Navigation Dots */}
-      <motion.div
-        className="block fixed right-4 lg:right-6 top-1/2 -translate-y-1/2 z-40"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 20 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex flex-col gap-4 px-4 py-7 bg-background/70 backdrop-blur-sm border border-border/60 rounded-full shadow-2xl hover:border-border transition-all duration-300">
-          {navItems.map((item, idx) => (
-            <motion.div
-              key={item.href}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: idx * 0.05 }}
-            >
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={item.href}
-                    className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
-                  >
-                    <span className="sr-only">{item.label}</span>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
-                  {item.label}
-                </TooltipContent>
-              </Tooltip>
-            </motion.div>
-          ))}
-
-          <div className="w-0.5 h-0.5 bg-accent/40 rounded-full mx-auto my-1" />
-
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: navItems.length * 0.05 }}
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="https://github.com/Greghori101"
-                  target="_blank"
-                  className="group relative w-3 h-3 rounded-full bg-accent/70 hover:bg-accent hover:scale-150 hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
-                >
-                  <Github size={8} className="text-background opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="sr-only">GitHub</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="left" sideOffset={12} className="bg-background/95 backdrop-blur-2xl border border-accent/40 text-accent font-bold uppercase tracking-widest text-xs">
-                GitHub
-              </TooltipContent>
-            </Tooltip>
-          </motion.div>
-        </div>
-      </motion.div>
+      <NavigationDots />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden">
+      <section id="home" className="relative flex flex-col justify-center px-6 pt-32 pb-20 overflow-hidden">
         {/* Animated Background Grid */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 opacity-30" style={{
@@ -468,7 +435,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 gap-16"
+            className="grid md:grid-cols-3 gap-16"
           >
             <div className="space-y-6">
               <span className="text-xs font-bold uppercase tracking-widest text-accent">Research & Education</span>
@@ -478,28 +445,17 @@ export default function Portfolio() {
               <div className="w-12 h-1 bg-accent rounded-full" />
             </div>
 
-            <div className="space-y-8 text-lg text-muted-foreground">
-              <div>
-                <h3 className="text-2xl font-black text-foreground mb-3">PhD in Quantum Computing</h3>
-                <p className="text-foreground font-semibold mb-2">USTHB University • 2025-2029</p>
-                <p className="leading-relaxed">
-                  Thesis: <span className="text-accent font-semibold">Quantum-Safe Blockchain and Distributed Ledger Technologies</span>. Researching post-quantum cryptography and the intersection of quantum computing with blockchain security.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-black text-foreground mb-3">Master&apos;s in Computer Science</h3>
-                <p className="text-foreground font-semibold mb-2">ESI-SBA University • 2019-2024</p>
-                <p className="leading-relaxed">
-                  Thesis: <span className="text-accent font-semibold">Real-time Autospares Detection using Deep Learning</span>. Developed CNN models for real-time object detection in automotive applications.
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-border">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Combining academic rigor with practical engineering, focused on making quantum-safe systems production-ready and accessible.
-                </p>
-              </div>
+            <div className="space-y-8 text-lg text-muted-foreground col-span-2">
+              {educations.map((content, key) => {
+                return (
+                  <div key={key}>
+                    <h3 className="text-2xl font-black text-foreground mb-3">{content.title}</h3>
+                    <p className="text-foreground font-semibold mb-2">{content.at} • {content.start}-{content.end}</p>
+                    <span className="text-accent font-semibold">{content.thesis}</span>
+                    <p className="leading-relaxed"> {content.details}</p>
+                  </div>
+                )
+              })}
             </div>
           </motion.div>
         </div>
@@ -590,7 +546,6 @@ export default function Portfolio() {
 
           <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-muted-foreground">© 2026 Souala Elhoussine. All rights reserved.</p>
-            <p className="text-xs text-muted-foreground">Built with React, Next.js & Tailwind CSS</p>
           </div>
         </div>
       </footer>
