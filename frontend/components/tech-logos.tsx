@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 
 interface TechLogo {
   name: string
@@ -32,21 +31,18 @@ const technologies: TechLogo[] = [
 const duplicatedTechs = [...technologies, ...technologies]
 
 export function TechLogos() {
-  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <div className="w-full overflow-hidden">
       <motion.div
         initial={{ x: 0 }}
-        animate={isHovered ? { x: 0 } : { x: -1920 }}
+        animate={{x:60}}
         transition={{
-          duration: 30,
+          duration: 1,
           repeat: Infinity,
           ease: 'linear',
           repeatType: 'loop',
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         className="flex gap-8 py-8 cursor-grab active:cursor-grabbing"
       >
         {duplicatedTechs.map((tech, idx) => (

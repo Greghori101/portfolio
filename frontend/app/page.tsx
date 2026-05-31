@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { TechLogos } from '@/components/tech-logos'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 
 
@@ -423,18 +421,6 @@ export default function Portfolio() {
             <h2 className="text-5xl md:text-6xl font-black uppercase leading-tight">
               Work<br />Experience
             </h2>
-          </motion.div>
-
-          {/* Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-20 pb-20 border-b border-border"
-          >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-8">Core Technologies</p>
-            <TechLogos />
           </motion.div>
 
           {/* Experience Timeline */}
