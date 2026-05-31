@@ -22,8 +22,7 @@ export default function AdminDashboard() {
   if (!isAuthenticated || !user) return null
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto  px-4">
         <div className="flex items-center gap-3 mb-8">
           <LayoutDashboard className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold">Admin Dashboard</h1>
@@ -71,6 +70,5 @@ export default function AdminDashboard() {
           </p>
         </div>
       </div>
-    </div>
   )
 }

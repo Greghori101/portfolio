@@ -125,8 +125,7 @@ export default function EditBlogPage() {
   }
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto  px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
             <Link href="/admin/blogs" className="text-sm text-muted-foreground hover:text-foreground">
@@ -280,6 +279,5 @@ export default function EditBlogPage() {
           </Card>
         </div>
       </div>
-    </div>
   )
 }

@@ -4,13 +4,13 @@ import { Provider as JotaiProvider } from 'jotai'
 import { ThemeProvider } from '@/components/theme-provider'
 import { AuthInitializer } from '@/components/auth-initializer'
 import './globals.css'
+import NavBar from '@/components/nav-bar'
 
 const inter = Inter({ subsets: ["latin"], weight: ['400', '700', '900'] });
 
 export const metadata: Metadata = {
   title: 'Souala Elhoussine | Full-Stack Engineer & Quantum Computing Researcher',
   description: 'PhD Candidate in Quantum Computing | Full-Stack Software Engineer specializing in AI integration, scalable systems design, and cutting-edge technologies',
-  generator: 'v0.app',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -33,7 +33,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <JotaiProvider>
             <AuthInitializer>
-              {children}
+              <div className="relative bg-background text-foreground transition-colors duration-500">
+                <NavBar />
+                {children}
+              </div>
             </AuthInitializer>
           </JotaiProvider>
         </ThemeProvider>
