@@ -13,7 +13,6 @@ const navItems = [
     { label: 'Experience', href: '/#experience' },
     { label: 'Projects', href: '/#projects' },
     { label: 'Research', href: '/#research' },
-    { label: 'Blogs', href: '/blogs' },
 ]
 
 export default function NavigationDots() {

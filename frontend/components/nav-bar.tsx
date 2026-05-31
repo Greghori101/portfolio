@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Github, Mail, Linkedin } from 'lucide-react'
+import { Menu, X, Github, Mail, Linkedin, Newspaper } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -42,6 +42,11 @@ export default function NavBar() {
 
                     <div className="hidden md:flex items-center gap-4">
                         <ThemeToggle />
+                        <Link href="/blogs">
+                            <Button variant="outline" size="sm" className="rounded-full">
+                                <Newspaper/> Blogs
+                            </Button>
+                        </Link>
                         <Link href="https://github.com/Greghori101" target="_blank">
                             <Button variant="outline" size="sm" className="rounded-full">
                                 <Github size={16} className="mr-2" /> GitHub

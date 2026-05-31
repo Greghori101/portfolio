@@ -101,7 +101,7 @@ const projects = [
 const educations = [
   {
     "title": "PhD in Quantum Computing",
-    "at": "USTHB University",
+    "at": "University of Science and Technologies Houari Boumedian",
     "start": "Nov. 2025",
     "end": "Oct. 2029",
     "description": "",
