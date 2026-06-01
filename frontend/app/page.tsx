@@ -1,11 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { ArrowUpRight, Github, Linkedin, Mail, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import NavigationDots from '@/components/navigation-dots'
 import Image from 'next/image'
+import { portfolioApi, type EducationData, type ExperienceData, type PublicationData, type ProjectData } from '@/lib/api'
 
 
 const navItems = [
@@ -42,94 +44,48 @@ function formatDateRange(start: string, end?: string | null) {
   return `${startLabel} — ${endLabel}`
 }
 
-const experiences = [
-  {
-    title: 'Backend Developer',
-    company: 'Sobiapi',
-    start: '2025-08',
-    end: '2025-10',
-    description: 'Developed a real estate AI agent platform with n8n-driven automated workflows and real-time updates.',
-    highlight: 'AI automation + workflow orchestration (n8n) for real estate operations',
-    tech: ['Nest.js', 'Next.js', 'N8n'],
-  },
-  {
-    title: 'Software Engineer',
-    company: 'Apollo Digital Solutions',
-    start: '2024-07',
-    end: '2025-08',
-    description: 'Designed and developed full SaaS applications with Stripe integrations and mentored engineering interns.',
-    highlight: 'Stripe payments integration + end-to-end SaaS delivery and mentorship',
-    tech: ['Laravel', 'Next.js', 'Stripe', 'Docker'],
-  },
-  {
-    title: 'Software Engineer Intern',
-    company: 'Sonelgaz',
-    start: '2023-11',
-    end: '2023-12',
-    description: 'Process automation and infrastructure management.',
-    highlight: '99.9% uptime maintenance & 100% workflow automation',
-    tech: ['PHP', 'JavaScript'],
-  },
-]
+function parseTimelineDate(value: string | undefined | null) {
+  if (!value || !value.trim()) return 0
+  const trimmed = value.trim()
+  const yearMonth = trimmed.match(/^(\d{4})[-/.](\d{1,2})/) ?? trimmed.match(/^(\d{4})\b/)
+  if (!yearMonth) return 0
+  const year = Number(yearMonth[1])
+  const month = yearMonth[2] ? Number(yearMonth[2]) - 1 : 0
+  return new Date(year, month, 1).getTime()
+}
 
-const projects = [
-  {
-    title: 'AI Agent Platform',
-    category: 'SAAS',
-    description: 'Real estate automation SaaS with AI workflows, real-time updates, and automated task scheduling. Includes comprehensive dashboard and analytics.',
-    link: 'https://github.com/Greghori101',
-    tech: ['nestjs', 'nextjs', 'typescript', 'mongodb', 'websockets'],
-    featured: true
-  },
-  {
-    title: 'Property Management System',
-    category: 'SAAS',
-    description: 'Full-featured SaaS platform for property management with multi-tenant architecture, real-time notifications, and advanced reporting.',
-    link: 'https://github.com/Greghori101',
-    tech: ['laravel', 'nextjs', 'postgresql', 'docker', 'redis'],
-    featured: true
-  },
-  {
-    title: 'Analytics Dashboard',
-    category: 'SAAS',
-    description: 'Enterprise analytics SaaS with real-time data visualization, custom report generation, and predictive analytics powered by ML models.',
-    link: 'https://github.com/Greghori101',
-    tech: ['react', 'nodejs', 'fastapi', 'postgresql', 'tensorflow'],
-    featured: true
-  },
-]
+function sortByStartDate<T extends { start?: string | null }>(items: T[]) {
+  return [...items].sort((a, b) => parseTimelineDate(b.start) - parseTimelineDate(a.start))
+}
 
-const educations = [
-  {
-    "title": "PhD in Quantum Computing",
-    "at": "University of Science and Technologies Houari Boumedian",
-    "start": "Nov. 2025",
-    "end": "Oct. 2029",
-    "description": "",
-    "thesis": "Quantum-Safe Blockchain and Distributed Ledger Technologies.",
-    "details": "Researching post-quantum cryptography and the intersection of quantum computing with blockchain security."
-  },
-  {
-    "title": "Master's in Computer Science",
-    "at": "Higher School of Computer Science ESI-SBA",
-    "start": "Sep. 2019",
-    "end": "Oct. 2024",
-    "description": "",
-    "thesis": "Real-time Autospares Detection using Deep Learning.",
-    "details": "Developed CNN models for real-time object detection in automotive applications."
-  },
-  {
-    "title": "Engineer in Computer Science",
-    "at": "Higher School of Computer Science ESI-SBA",
-    "start": "Sep. 2019",
-    "end": "Oct. 2024",
-    "description": "",
-    "thesis": "AutoHub Startup.",
-    "details": "platform and mobile app for automative services with three core functionalities; autospares marketplace with AI search (like circel to search by Google), Uber like towing services, mechanic and client cordination and comunication"
-  }
-]
+function sortPublicationsByYear(items: PublicationData[]) {
+  return [...items].sort((a, b) => parseTimelineDate(b.publication) - parseTimelineDate(a.publication))
+}
+
+// Portfolio data is loaded from the backend via `portfolioApi` in the component below.
 
 export default function Portfolio() {
+  const [experiences, setExperiences] = useState<ExperienceData[]>([])
+  const [projects, setProjects] = useState<ProjectData[]>([])
+  const [educations, setEducations] = useState<EducationData[]>([])
+  const [publications, setPublications] = useState<PublicationData[]>([])
+
+  useEffect(() => {
+    Promise.all([
+      portfolioApi.experiences(),
+      portfolioApi.projects(),
+      portfolioApi.educations(),
+      portfolioApi.publications(),
+    ]).then(([experiencesRes, projectsRes, educationsRes, publicationsRes]) => {
+      if (experiencesRes.data?.experiences) setExperiences(sortByStartDate(experiencesRes.data.experiences))
+      if (projectsRes.data?.projects) setProjects(projectsRes.data.projects)
+      if (educationsRes.data?.educations) setEducations(sortByStartDate(educationsRes.data.educations))
+      if (publicationsRes.data?.publications) setPublications(sortPublicationsByYear(publicationsRes.data.publications))
+    })
+  }, [])
+
+  const featuredProjects = projects.filter((project) => project.featured)
+  const displayProjects = featuredProjects.length > 0 ? featuredProjects : projects
 
   return (
     <>
@@ -263,11 +219,11 @@ export default function Portfolio() {
 
             <div className="space-y-8 text-lg text-muted-foreground">
               <p className="text-foreground text-xl font-medium leading-relaxed">
-                I&apos;m a full-stack software engineer with a language-agnostic architectural mindset, specializing in solving complex problems through clean, production-ready code.
+                I&apos;m Souala Elhoussine — a Computer Systems Engineer and PhD researcher in Quantum Computing. I build production-ready systems and conduct research on quantum-safe distributed technologies.
               </p>
 
               <p>
-                Currently pursuing a PhD in Quantum Computing at USTHB while working on cutting-edge technologies. My expertise spans deep learning, distributed systems, blockchain technology, and cloud infrastructure.
+                For the full academic and professional journey (education, internships, projects, and research activities), <a href="/bio" className="text-accent font-semibold hover:underline">read the complete biography</a>.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-border">
@@ -302,16 +258,16 @@ export default function Portfolio() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, i) => (
+            {displayProjects.map((project, i) => (
               <motion.div
-                key={i}
+                key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
                 className="group relative flex flex-col h-full bg-card border border-border hover:border-accent/50 p-8 transition-all duration-500 overflow-hidden"
               >
-                <Link href={project.link} target="_blank" className="flex flex-col h-full">
+                <Link href={project.link ?? '#'} target={project.link ? '_blank' : undefined} className="flex flex-col h-full">
                   <div className="space-y-4 grow">
                     <div className="flex justify-between items-start">
                       <span className="text-xs font-bold uppercase tracking-widest text-accent">{project.category}</span>
@@ -331,7 +287,7 @@ export default function Portfolio() {
                   <div className="mt-8 pt-8 border-t border-border">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
                     <div className="relative h-14 flex items-center">
-                      {project.tech.slice(0, 4).map((t, idx) => (
+                      {(project.tech ?? []).slice(0, 4).map((t, idx) => (
                         <div
                           key={idx}
                           className="group/tech absolute w-12 h-12 rounded-full bg-accent/10 border-2 border-card hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help hover:z-10 hover:scale-125 hover:shadow-lg hover:shadow-accent/30"
@@ -453,7 +409,7 @@ export default function Portfolio() {
                 return (
                   <div key={key}>
                     <h3 className="text-2xl font-black text-foreground mb-3">{content.title}</h3>
-                    <p className="text-foreground font-semibold mb-2">{content.at} • {content.start}-{content.end}</p>
+                    <p className="text-foreground font-semibold mb-2">{content.institution} • {content.start}-{content.end}</p>
                     <span className="text-accent font-semibold">{content.thesis}</span>
                     <p className="leading-relaxed"> {content.details}</p>
                   </div>
@@ -461,6 +417,24 @@ export default function Portfolio() {
               })}
             </div>
           </motion.div>
+          <div className="mt-12 pt-8 border-t border-border"></div>
+          <h2 className="text-3xl font-black uppercase leading-tight mb-6">Selected Publications</h2>
+          <div className="grid gap-6">
+            {publications.map((paper) => (
+              <article key={paper.id} className="overflow-hidden rounded-3xl border border-border bg-surface/70 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">{paper.title}</h3>
+                  <p className="text-sm font-medium text-muted-foreground">{paper.authors}</p>
+                  <p className="leading-relaxed text-foreground">{paper.publication}</p>
+                  {paper.link && (
+                    <Link href={paper.link} target="_blank" className="text-accent hover:underline text-sm font-semibold">
+                      View publication
+                    </Link>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

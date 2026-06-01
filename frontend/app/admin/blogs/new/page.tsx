@@ -100,14 +100,17 @@ export default function NewBlogPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto  px-4">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-4xl mx-auto px-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <Link href="/admin/blogs" className="text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="h-4 w-4 inline mr-1" />
-            Back to posts
-          </Link>
-          <h1 className="text-2xl font-bold mt-1">New Article</h1>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
+            <Link href="/admin" className="text-accent hover:text-foreground">Admin</Link>
+            <span>/</span>
+            <Link href="/admin/blogs" className="hover:text-foreground">Blogs</Link>
+            <span>/</span>
+            <span className="font-medium">New</span>
+          </div>
+          <h1 className="text-2xl font-bold">New Article</h1>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">

@@ -36,6 +36,57 @@ export interface TagData {
   blogs_count: number;
 }
 
+export interface ExperienceData {
+  id: number;
+  title: string;
+  company: string;
+  start: string;
+  end: string | null;
+  description: string | null;
+  highlight: string | null;
+  tech: string[] | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectData {
+  id: number;
+  title: string;
+  category: string | null;
+  description: string | null;
+  link: string | null;
+  tech: string[] | null;
+  featured: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EducationData {
+  id: number;
+  title: string;
+  institution: string;
+  start: string | null;
+  end: string | null;
+  thesis: string | null;
+  details: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PublicationData {
+  id: number;
+  title: string;
+  authors: string | null;
+  publication: string | null;
+  link: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
 async function fetchApi<T>(
   endpoint: string,
   options: RequestInit = {}
@@ -145,5 +196,181 @@ export const blogApi = {
 export const tagApi = {
   async list() {
     return fetchApi<{ tags: TagData[] }>('/tags');
+  },
+}
+
+export const portfolioApi = {
+  async experiences() {
+    return fetchApi<{ experiences: ExperienceData[] }>('/portfolio/experiences');
+  },
+
+  async showExperience(id: number) {
+    return fetchApi<{ experience: ExperienceData }>(`/portfolio/experiences/${id}`);
+  },
+
+  async storeExperience(data: {
+    title: string;
+    company: string;
+    start: string;
+    end?: string;
+    description?: string;
+    highlight?: string;
+    tech?: string[];
+    sort_order?: number;
+  }) {
+    return fetchApi<{ experience: ExperienceData }>('/portfolio/experiences', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async updateExperience(id: number, data: Partial<{
+    title: string;
+    company: string;
+    start: string;
+    end?: string;
+    description?: string;
+    highlight?: string;
+    tech?: string[];
+    sort_order?: number;
+  }>) {
+    return fetchApi<{ experience: ExperienceData }>(`/portfolio/experiences/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async destroyExperience(id: number) {
+    return fetchApi<{ message: string }>(`/portfolio/experiences/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  async projects() {
+    return fetchApi<{ projects: ProjectData[] }>('/portfolio/projects');
+  },
+
+  async showProject(id: number) {
+    return fetchApi<{ project: ProjectData }>(`/portfolio/projects/${id}`);
+  },
+
+  async storeProject(data: {
+    title: string;
+    category?: string;
+    description?: string;
+    link?: string;
+    tech?: string[];
+    featured?: boolean;
+    sort_order?: number;
+  }) {
+    return fetchApi<{ project: ProjectData }>('/portfolio/projects', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async updateProject(id: number, data: Partial<{
+    title: string;
+    category?: string;
+    description?: string;
+    link?: string;
+    tech?: string[];
+    featured?: boolean;
+    sort_order?: number;
+  }>) {
+    return fetchApi<{ project: ProjectData }>(`/portfolio/projects/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async destroyProject(id: number) {
+    return fetchApi<{ message: string }>(`/portfolio/projects/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  async educations() {
+    return fetchApi<{ educations: EducationData[] }>('/portfolio/educations');
+  },
+
+  async showEducation(id: number) {
+    return fetchApi<{ education: EducationData }>(`/portfolio/educations/${id}`);
+  },
+
+  async storeEducation(data: {
+    title: string;
+    institution: string;
+    start?: string;
+    end?: string;
+    thesis?: string;
+    details?: string;
+    sort_order?: number;
+  }) {
+    return fetchApi<{ education: EducationData }>('/portfolio/educations', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async updateEducation(id: number, data: Partial<{
+    title: string;
+    institution: string;
+    start?: string;
+    end?: string;
+    thesis?: string;
+    details?: string;
+    sort_order?: number;
+  }>) {
+    return fetchApi<{ education: EducationData }>(`/portfolio/educations/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async destroyEducation(id: number) {
+    return fetchApi<{ message: string }>(`/portfolio/educations/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  async publications() {
+    return fetchApi<{ publications: PublicationData[] }>('/portfolio/publications');
+  },
+
+  async showPublication(id: number) {
+    return fetchApi<{ publication: PublicationData }>(`/portfolio/publications/${id}`);
+  },
+
+  async storePublication(data: {
+    title: string;
+    authors?: string;
+    publication?: string;
+    link?: string;
+    sort_order?: number;
+  }) {
+    return fetchApi<{ publication: PublicationData }>('/portfolio/publications', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async updatePublication(id: number, data: Partial<{
+    title: string;
+    authors?: string;
+    publication?: string;
+    link?: string;
+    sort_order?: number;
+  }>) {
+    return fetchApi<{ publication: PublicationData }>(`/portfolio/publications/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async destroyPublication(id: number) {
+    return fetchApi<{ message: string }>(`/portfolio/publications/${id}`, {
+      method: 'DELETE',
+    });
   },
 }

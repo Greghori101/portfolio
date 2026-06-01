@@ -56,16 +56,18 @@ export default function AdminBlogsPage() {
   if (!isAuthenticated || !user) return null
 
   return (
-    <div className="max-w-5xl mx-auto  px-4">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-5xl mx-auto px-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <Link href="/admin" className="text-sm text-muted-foreground hover:text-foreground">
-            ← Dashboard
-          </Link>
-          <h1 className="text-2xl font-bold mt-1">Blog Posts</h1>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
+            <Link href="/admin" className="text-accent hover:text-foreground">Admin</Link>
+            <span>/</span>
+            <span className="font-medium">Blogs</span>
+          </div>
+          <h1 className="text-2xl font-bold">Blog Posts</h1>
         </div>
         <Link href="/admin/blogs/new">
-          <Button>
+          <Button className="rounded-full">
             <Plus className="h-4 w-4 mr-2" />
             New Article
           </Button>
@@ -96,14 +98,14 @@ export default function AdminBlogsPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {blogs.map((blog) => (
-            <Card key={blog.id} className="hover:border-primary/30 transition-colors">
-              <CardContent className="p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold truncate">{blog.title}</h3>
+            <Card key={blog.id} className="h-full hover:border-primary/50 transition-all duration-300">
+              <CardHeader className="p-5 pb-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <h3 className="text-lg font-semibold truncate">{blog.title}</h3>
                       {blog.published_at ? (
                         <Badge variant="default" className="shrink-0 text-xs">Published</Badge>
                       ) : (
@@ -122,50 +124,50 @@ export default function AdminBlogsPage() {
                         </span>
                       )}
                     </div>
-                    {blog.description && (
-                      <p className="text-sm text-muted-foreground mt-2 line-clamp-1">
-                        {blog.description}
-                      </p>
-                    )}
                   </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <Link href={`/blogs/${blog.slug}`}>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Eye className="h-4 w-4" />
+                  <p className="max-w-xs text-sm text-muted-foreground line-clamp-2">
+                    {blog.description || 'No description available.'}
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent className="p-5 pt-3">
+                <div className="flex flex-wrap gap-2 justify-end">
+                  <Link href={`/blogs/${blog.slug}`}>
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <Eye className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href={`/admin/blogs/${blog.slug}/edit`}>
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
+                        onClick={() => setDeleteSlug(blog.slug)}
+                      >
+                        <Trash2 className="h-4 w-4" />
                       </Button>
-                    </Link>
-                    <Link href={`/admin/blogs/${blog.slug}/edit`}>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-destructive hover:text-destructive"
-                          onClick={() => setDeleteSlug(blog.slug)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Delete article?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete &ldquo;{blog.title}&rdquo;.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground">
-                            Delete
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Delete article?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently delete &ldquo;{blog.title}&rdquo;.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground">
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
               </CardContent>
             </Card>

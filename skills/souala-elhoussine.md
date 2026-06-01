@@ -47,3 +47,565 @@ Currently, I am preparing my first scientific publication as part of my doctoral
 Beyond my academic and professional activities, I enjoy building practical projects. Some of the projects I have developed include a school management system, a fire detection device optimized for large-scale deployment in forests, a marine radio mesh communication network designed to improve resource distribution between sea and land operations, multiple dashboards and platforms for clients and freelancers, and a medical image annotation platform inspired by systems such as IMAIOS for labeling and annotation workflows.
 
 My long-term goal is to contribute to the advancement of quantum computing, particularly in quantum algorithms, optimization, fault-tolerant architectures, and secure distributed systems, while combining my background in software engineering, mathematics, and computer science research.
+
+# SOUALA ELHOUSSINE – COMPLETE ACADEMIC & PROFESSIONAL JOURNEY
+
+## Personal Information
+
+**Souala Elhoussine**
+Computer Systems Engineer | Software Engineer | PhD Researcher in Quantum Computing
+
+Email: [e.souala@esi-sba.dz](mailto:e.souala@esi-sba.dz)
+Phone: +213 674 680 780
+
+GitHub: [https://github.com/SoualaElhoussine](https://github.com/SoualaElhoussine)
+LinkedIn: [https://linkedin.com/in/souala-elhoussine](https://linkedin.com/in/souala-elhoussine)
+Portfolio: [https://soualaelhoussine.com](https://soualaelhoussine.com)
+
+---
+
+# PROFILE
+
+Computer Systems Engineer and Software Engineer currently pursuing a PhD in Quantum Computing. Strong foundation in mathematics, physics, computer science, distributed systems, networking, cybersecurity, software engineering, artificial intelligence, and quantum technologies.
+
+Passionate about solving complex scientific and engineering problems through a combination of mathematics, computing, and research. My long-term objective is to contribute to the advancement of quantum computing, quantum optimization, fault-tolerant architectures, post-quantum cryptography, distributed systems, and secure digital infrastructures.
+
+---
+
+# EDUCATION
+
+## PhD in Quantum Computing
+
+2025 – Present
+
+Institution: ESI-SBA / National Doctoral Program
+
+Research Topic:
+
+**Quantum-Safe Blockchain and Distributed Ledger Technologies**
+
+Research Areas:
+
+* Post-Quantum Cryptography
+* Blockchain Security
+* Distributed Ledger Technologies
+* Quantum Algorithms
+* Quantum Optimization
+* Quantum Error Correction
+* Fault-Tolerant Quantum Computing
+
+Achievements:
+
+* Ranked First among Quantum Computing Master's candidates.
+* Admitted through highly competitive national doctoral examination.
+* More than 3000 candidates participated nationally.
+* Only 51 doctoral positions awarded across 7 universities.
+
+---
+
+## Master's Degree in Computer Science
+
+Computer Systems Engineering (ISI)
+ESI-SBA – Higher School of Computer Science of Sidi Bel Abbès
+
+2019 – 2024
+
+---
+
+### First Year (2019–2020)
+
+Strong focus on:
+
+* Mathematics
+* Physics
+* Algorithms
+* Computer Architecture
+* Electronics
+* Programming Fundamentals
+
+Achievements:
+
+* Obtained two perfect scores (20/20) in Computer Architecture examinations.
+* Demonstrated strong performance in mathematics and scientific subjects.
+
+---
+
+### Second Year (2020–2021)
+
+Focus:
+
+* Data Structures
+* Algorithms
+* Operating Systems
+* Networks
+* Linux
+* Databases
+
+Major Project:
+
+#### Examination Planning System
+
+Team of six students.
+
+Technologies:
+
+* PHP
+* JavaScript
+* HTML/CSS
+* MySQL
+
+Responsibilities:
+
+* Development
+* Team collaboration
+* Planning and implementation
+
+Additional Activities:
+
+* Linux administration projects
+* Networking practical work
+* Technical reports
+
+---
+
+### National Competitive Examination
+
+At the end of the preparatory cycle:
+
+* Participated in national ranking examination.
+* Ranked among the Top 10 students.
+* Successfully qualified for Engineering Cycle.
+
+---
+
+### Third Year (2021–2022)
+
+Focus:
+
+* Cryptography
+* Networking
+* Probability
+* Statistics
+* Databases
+* Software Engineering
+
+Major Project:
+
+#### Academic Project Management Platform
+
+Features:
+
+* Student supervision management
+* Project tracking
+* Progress monitoring
+* Academic workflow management
+
+---
+
+### Fourth Year (2022–2023)
+
+Specialization Chosen:
+
+**Computer Systems Engineering (ISI)**
+
+Subjects:
+
+* Advanced Algorithms
+* Networking
+* Cybersecurity
+* Mobile Development
+* Web Development
+* UML
+* System Design
+* Project Management
+* Artificial Intelligence
+
+Major Project:
+
+#### Clinical Information Management System
+
+Responsibilities:
+
+* Network Architecture Design
+* Security Planning
+* Infrastructure Design
+* Full Software Development
+
+Features:
+
+* Patient Management
+* Doctor Management
+* Appointments
+* Medical Records
+* Administrative Operations
+
+---
+
+### Fifth Year (2023–2024)
+
+Dual Track:
+
+#### Master's Research Project
+
+Topic:
+
+**Deep Learning-Based Object Detection for Automotive Spare Parts**
+
+Research Areas:
+
+* Computer Vision
+* Deep Learning
+* Object Detection
+* AI Applications
+
+---
+
+#### Engineering Graduation Project
+
+### AutoHub
+
+Startup-Oriented Smart Automotive Ecosystem
+
+Main Components:
+
+#### 1. Automotive Marketplace
+
+* Spare parts platform
+* Product management
+* Search and recommendation
+
+#### 2. Smart Vision System
+
+* Camera-based spare part recognition
+* AI-powered search
+
+#### 3. Smart Towing Service
+
+* Uber-like dispatch system
+* Mechanic management
+* Customer communication
+
+---
+
+# PROFESSIONAL EXPERIENCE
+
+## Full Stack Developer
+
+SobiAPI
+
+August 2025 – October 2025
+
+Responsibilities:
+
+* Backend API development
+* Database management
+* Server-side architecture
+* Platform maintenance
+
+Technologies:
+
+* Node.js
+* PostgreSQL
+* REST APIs
+
+---
+
+## Software Engineer
+
+Apollo Digital Solutions
+
+July 2024 – September 2025
+
+Responsibilities:
+
+* Full-stack development
+* Modern web applications
+* API design
+* Cloud deployments
+* CI/CD
+* Software architecture
+
+Achievements:
+
+* Improved platform performance
+* Built modular APIs
+* Developed scalable production systems
+
+Technologies:
+
+* Next.js
+* React
+* Laravel
+* Docker
+* GitHub Actions
+* PostgreSQL
+
+---
+
+# INTERNSHIPS
+
+## Research Intern
+
+LabRI-SBA
+Laboratoire de Recherche en Informatique de Sidi Bel Abbès
+
+2024 – 6 Months
+
+Activities:
+
+* Scientific literature review
+* Research methodology
+* Experimental evaluation
+* Academic writing
+* Research discussions
+
+Impact:
+
+This internship represented the beginning of my research journey and motivated my transition toward academic research and doctoral studies.
+
+---
+
+## Information Systems Intern
+
+Sonelgaz
+
+2023 – 2 Months
+
+Activities:
+
+* Enterprise information systems
+* Network infrastructure
+* IT operations
+* Technical support
+
+---
+
+## IT Systems Intern
+
+Sonelgaz
+
+2022 – 1 Month
+
+Activities:
+
+* Network maintenance
+* System administration
+* Infrastructure monitoring
+
+---
+
+# FREELANCE EXPERIENCE
+
+## Freelance Software Developer
+
+Developed multiple systems and platforms for clients.
+
+Projects include:
+
+### Medical Imaging Annotation Platform
+
+Inspired by:
+
+* IMAIOS
+
+Features:
+
+* Medical image labeling
+* Annotation tools
+* Dataset management
+* Expert workflows
+
+---
+
+### Client Dashboards
+
+* Analytics platforms
+* Management systems
+* Reporting solutions
+
+---
+
+### Custom Web Platforms
+
+* Backend development
+* Frontend development
+* Database design
+* API integrations
+
+---
+
+# RESEARCH ACTIVITIES
+
+## Current Research
+
+PhD Thesis:
+
+### Quantum-Safe Blockchain and Distributed Ledger Technologies
+
+Research Areas:
+
+* Post-Quantum Cryptography
+* Blockchain Security
+* Distributed Systems
+* Quantum Algorithms
+* Quantum Optimization
+
+---
+
+## Publication Preparation
+
+Currently preparing first scientific publication based on doctoral research and literature review.
+
+---
+
+# QUANTUM COMPUTING ACTIVITIES
+
+## Quantum Computing Hackathons
+
+Participated in projects involving:
+
+* Paper implementation
+* Literature review
+* Quantum algorithms
+* Optimization problems
+* NP-hard problems
+
+---
+
+## IBM Quantum
+
+Practical Experience:
+
+* Qiskit
+* Quantum circuit design
+* Quantum simulation
+* IBM Quantum Cloud
+
+---
+
+# PERSONAL PROJECTS
+
+## School Management System
+
+Features:
+
+* Student management
+* Teacher management
+* Scheduling
+* Administration
+
+---
+
+## Smart Forest Fire Detection Device
+
+Objectives:
+
+* Early fire detection
+* Low-cost deployment
+* Large-scale manufacturing
+
+---
+
+## Marine Radio Mesh Communication Network
+
+Objectives:
+
+* Sea-to-land communications
+* Resource optimization
+* Coverage improvement
+
+---
+
+## Client Platforms and Dashboards
+
+Built multiple production-ready systems for businesses and freelancers.
+
+---
+
+# CERTIFICATIONS
+
+## Google Quantum AI
+
+### Hands-on Quantum Error Correction with Google Quantum AI
+
+Topics:
+
+* Quantum Error Correction
+* Surface Codes
+* Logical Qubits
+* Fault Tolerance
+* Quantum Noise
+
+---
+
+## Continuous Learning
+
+Currently studying:
+
+* Qiskit
+* Quantum Algorithms
+* Quantum Optimization
+* Quantum Error Correction
+* Fault-Tolerant Quantum Computing
+* Post-Quantum Cryptography
+
+---
+
+# TECHNICAL SKILLS
+
+### Programming
+
+Python, JavaScript, TypeScript, PHP, Java, Kotlin, C, C++, Dart, SQL
+
+### AI & Data Science
+
+TensorFlow, PyTorch, OpenCV, Deep Learning, Computer Vision
+
+### Web & Backend
+
+React, Next.js, Vue.js, Node.js, NestJS, Laravel, Django, Flask, FastAPI
+
+### Databases
+
+PostgreSQL, MySQL, MongoDB, Redis, Firebase, Supabase
+
+### DevOps & Cloud
+
+Docker, Kubernetes, GitHub Actions, AWS, Azure, GCP, CI/CD
+
+### Quantum Computing
+
+Qiskit, IBM Quantum, Quantum Algorithms, Quantum Optimization, Quantum Error Correction, Quantum Information
+
+### Systems & Security
+
+Networking, Cybersecurity, Distributed Systems, System Design, Software Architecture, Cryptography
+
+---
+
+# ACHIEVEMENTS
+
+* Ranked Top 10 in national engineering-cycle competitive examination.
+* Obtained perfect scores in Computer Architecture examinations during first year.
+* Ranked First among Quantum Computing Master's candidates in national doctoral entrance competition.
+* Selected among only 51 admitted PhD students nationally.
+* Transitioned from software engineering industry to quantum computing research.
+* Built multiple commercial and research-oriented systems.
+* Active participant in quantum computing hackathons and research initiatives.
+
+---
+
+# LONG-TERM RESEARCH VISION
+
+To contribute to the development of:
+
+* Quantum Algorithms
+* Quantum Optimization
+* Fault-Tolerant Quantum Computing
+* Quantum Error Correction
+* Post-Quantum Cryptography
+* Quantum-Safe Blockchain Systems
+* Secure Distributed Infrastructures
+* Large-Scale Quantum Computing Architectures
+
+with the objective of bridging advanced theoretical research and real-world industrial applications.

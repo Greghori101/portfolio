@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSetAtom } from 'jotai';
-import { setAuthAtom } from '@/lib/auth-atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { isAuthenticatedAtom, setAuthAtom } from '@/lib/auth-atoms';
 import { sendCode, verifyCode } from '@/lib/auth';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,7 @@ type Step = 'email' | 'code';
 
 export default function LoginPage() {
   const router = useRouter();
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom);
   const setAuth = useSetAtom(setAuthAtom);
 
   const [step, setStep] = useState<Step>('email');
@@ -29,6 +30,12 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace('/admin');
+    }
+  }, [isAuthenticated, router]);
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();

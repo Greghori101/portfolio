@@ -3,9 +3,9 @@
 import { useAtomValue } from 'jotai'
 import { userAtom, isAuthenticatedAtom } from '@/lib/auth-atoms'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
-import { FileText, Plus, LayoutDashboard } from 'lucide-react'
+import { FileText, Plus, LayoutDashboard, ClipboardList } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function AdminDashboard() {
@@ -46,18 +46,18 @@ export default function AdminDashboard() {
           </Card>
         </Link>
 
-        <Link href="/admin/blogs/new">
+        <Link href="/admin/portfolio">
           <Card className="hover:border-primary/50 transition-all duration-300 group">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Plus className="h-5 w-5 text-primary" />
-                New Article
+                <ClipboardList className="h-5 w-5 text-primary" />
+                Portfolio
               </CardTitle>
-              <CardDescription>Create a new blog post</CardDescription>
+              <CardDescription>Manage homepage portfolio content</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Write a new article using the rich text editor with image upload support.
+                Update experiences, projects, education, and publications displayed on the landing page.
               </p>
             </CardContent>
           </Card>
