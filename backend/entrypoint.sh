@@ -8,7 +8,7 @@ if [ -z "$APP_KEY" ]; then
   php artisan key:generate
 fi
 
-php artisan migrate:fresh --force
+php artisan migrate:fresh --seed --force
 php artisan passport:keys --force
 php artisan passport:client --personal --name="Laravel" --no-interaction || true
 php artisan passport:revoke-all || true
