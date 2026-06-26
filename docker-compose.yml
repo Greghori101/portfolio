@@ -3,16 +3,58 @@ version: "3.9"
 services:
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: portfolio-frontend
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    container_name: ${PROJECT_NAME}-frontend
     env_file:
       - .env
     ports:
       - 3000
     labels:
       - traefik.enable=true
-      - traefik.http.routers.next-app.rule=Host(`portfolio.level-up-org.com`)
-      - traefik.http.routers.next-app.entrypoints=websecure
-      - traefik.http.routers.next-app.tls.certResolver=letsencrypt
-      - traefik.http.services.next-app.loadbalancer.server.port=3000
+      - traefik.http.routers.frontend-app.rule=Host(`${FRONTEND_DOMAIN}`)
+      - traefik.http.routers.frontend-app.entrypoints=websecure
+      - traefik.http.routers.frontend-app.tls.certResolver=letsencrypt
+      - traefik.http.services.frontend-app.loadbalancer.server.port=3000
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: ${PROJECT_NAME}-backend
+    env_file:
+      - .env
+    working_dir: /app
+    ports:
+      - 80
+    volumes:
+      - app_storage:/app/storage
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - mysql
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.backend-app.rule=Host(`${BACKEND_DOMAIN}`)
+      - traefik.http.routers.backend-app.entrypoints=websecure
+      - traefik.http.routers.backend-app.tls.certResolver=letsencrypt
+      - traefik.http.services.backend-app.loadbalancer.server.port=80
+      - traefik.http.middlewares.upload-limit.buffering.maxRequestBodyBytes=52428800
+
+  mysql:
+    image: mysql:8
+    container_name: ${PROJECT_NAME}-mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+  app_storage:
+  caddy_data:
+  caddy_config:
+
