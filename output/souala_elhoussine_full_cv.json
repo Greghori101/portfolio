@@ -1,0 +1,947 @@
+{
+  "schema": "structured_cv_v1",
+  "generated_on": "2026-06-26",
+  "person": {
+    "full_name": "Souala Elhoussine",
+    "primary_titles": [
+      "PhD Researcher in Quantum Computing",
+      "Computer Systems Engineer",
+      "Software Engineer",
+      "AI Engineer",
+      "Frontend Engineer",
+      "Backend Engineer",
+      "Database Administrator",
+      "System Design Practitioner"
+    ],
+    "current_location": "Algiers, Algeria",
+    "contact": {
+      "email": "e.souala@esi-sba.dz",
+      "whatsapp": "+213674680780"
+    },
+    "sites": {
+      "linkedin": "https://www.linkedin.com/in/hoceyne/",
+      "github": "https://github.com/Greghori101",
+      "portfolio": "https://portfolio.level-up-org.com/"
+    }
+  },
+  "professional_summaries_by_title": [
+    {
+      "title": "PhD Researcher in Quantum Computing",
+      "summary": "Researcher focused on quantum-safe blockchain and distributed ledger technologies, with interests spanning quantum algorithms, quantum optimization, quantum error correction, fault-tolerant quantum computing, post-quantum cryptography, blockchain security, quantum networking, and secure distributed infrastructures."
+    },
+    {
+      "title": "Computer Systems Engineer",
+      "summary": "Engineer trained in computer systems engineering with foundations in networking, cybersecurity, distributed systems, software architecture, infrastructure, operating systems, databases, cloud concepts, and system design."
+    },
+    {
+      "title": "Software Engineer",
+      "summary": "Full-stack software engineer experienced in production-grade SaaS platforms, enterprise systems, APIs, CI/CD, Dockerized deployments, frontend performance, backend architecture, database design, and maintainable software delivery."
+    },
+    {
+      "title": "AI Engineer",
+      "summary": "AI engineer experienced in deep learning, computer vision, RAG systems, medical AI platforms, AI agents, workflow automation, model integration, and production AI infrastructure."
+    },
+    {
+      "title": "Backend Engineer",
+      "summary": "Backend engineer experienced with REST APIs, Laravel, NestJS, FastAPI, microservices, event-driven workflows, database management, cloud integrations, and containerized production deployments."
+    },
+    {
+      "title": "Frontend Engineer",
+      "summary": "Frontend engineer experienced with React, Next.js, Vue.js, responsive interfaces, dynamic UI systems, marketplace UX, frontend optimization, and user-centered product implementation."
+    },
+    {
+      "title": "Database Administration / Data Engineering",
+      "summary": "Practitioner with experience designing and maintaining MySQL, PostgreSQL, and MongoDB-backed systems, supporting SaaS platforms, marketplaces, medical applications, automation systems, and scraped analytics pipelines."
+    },
+    {
+      "title": "System Design / DevOps",
+      "summary": "System designer with hands-on experience in Docker, Docker Compose, cloud deployment, multi-service architectures, network topology design, Cisco configuration, CI/CD, and production operations."
+    }
+  ],
+  "education": [
+    {
+      "degree_or_program": "PhD in Quantum Computing",
+      "institution": "University of Science and Technology Houari Boumediene (USTHB)",
+      "place": "Algiers, Algeria",
+      "start_date": "2025-11",
+      "end_date": "2029-10",
+      "status": "In progress",
+      "research_unit_or_lab": "RIIMA - Research in Intelligent Computing, Mathematics and Applications; VNets team mentioned by user as relevant official lab/team context",
+      "thesis_or_research_topic": "Quantum-Safe Blockchain and Distributed Ledger Technologies",
+      "admission_context": {
+        "competition": "Algerian national doctoral entrance examination",
+        "reported_candidate_pool": "More than 3,000 candidates across specializations and institutions",
+        "reported_selection": "51 admitted candidates across seven universities",
+        "reported_ranking": "Ranked first nationally among candidates from Quantum Computing master's programs"
+      },
+      "main_skills_and_disciplines": [
+        "Quantum computing",
+        "Quantum algorithms",
+        "Quantum optimization",
+        "Quantum error correction",
+        "Fault-tolerant quantum computing",
+        "Post-quantum cryptography",
+        "Blockchain security",
+        "Distributed ledger technologies",
+        "Cybersecurity",
+        "Distributed systems",
+        "Quantum networking",
+        "Secure computing",
+        "Qiskit",
+        "IBM Quantum Platform"
+      ],
+      "official_verification": {
+        "verified_items": [
+          "USTHB is the University of Science and Technology Houari Boumediene in Algiers, Algeria.",
+          "RIIMA official domain provided by user is hosted under usthb.dz: https://riima.usthb.dz."
+        ],
+        "sources": [
+          "https://www.usthb.dz/",
+          "https://riima.usthb.dz",
+          "https://riima.usthb.dz/vnets"
+        ],
+        "verification_note": "Program dates, thesis topic, ranking, and admission details are taken from the provided PDF/text and were not independently verifiable from accessible official pages during this pass."
+      }
+    },
+    {
+      "degree_or_program": "Computer Systems Engineering degree and Master's-level research track",
+      "institution": "Higher School of Computer Science 08 May 1945, Sidi Bel Abbès (ESI-SBA)",
+      "place": "Sidi Bel Abbès, Algeria",
+      "start_date": "2019-09",
+      "end_date": "2024-10-13",
+      "status": "Completed",
+      "specialization": "Computer Systems Engineering (ISI)",
+      "theses": [
+        {
+          "type": "Engineering thesis / startup-oriented graduation project",
+          "title": "Development of an AI-Powered Platform for Solving Automotive Problems in Algeria Through Innovative Services",
+          "date": "2024-10",
+          "summary": "Designed and implemented AutoHub, a platform integrating AI-powered automotive spare-part visual search, marketplace services, TowLink towing services, and mechanic-client communication and management tools."
+        },
+        {
+          "type": "Master's research thesis",
+          "title": "Real-Time Detection and Identification of Spare Parts Using Deep Learning",
+          "date": "2024-10",
+          "summary": "Researched and evaluated deep learning and computer vision methods for recognizing automotive spare parts from images."
+        }
+      ],
+      "main_skills_and_disciplines": [
+        "Mathematics",
+        "Linear algebra",
+        "Mathematical analysis",
+        "Probability and statistics",
+        "Algorithms and data structures",
+        "Logic",
+        "Computer architecture",
+        "Operating systems",
+        "Electronics",
+        "Physics",
+        "Programming fundamentals",
+        "Linux administration",
+        "Networking laboratories",
+        "Cryptography",
+        "Databases",
+        "Distributed systems",
+        "Software engineering",
+        "Advanced networking",
+        "Cybersecurity",
+        "Cloud concepts",
+        "Web development",
+        "Mobile development",
+        "UML modeling",
+        "Project management",
+        "Software architecture",
+        "Artificial intelligence",
+        "Machine learning",
+        "Deep learning",
+        "Computer vision",
+        "Research methodology"
+      ],
+      "academic_milestones": [
+        "Achieved perfect marks in both first-year Computer Architecture examinations, according to provided source text.",
+        "Ranked among the Top 10 nationally in the preparatory-cycle national engineering entrance examination, according to provided source text.",
+        "Chose Computer Systems Engineering because it aligned with systems, networking, cybersecurity, software architecture, and distributed computing interests."
+      ],
+      "official_verification": {
+        "verified_items": [
+          "ESI-SBA is presented by its official domain as the Higher School of Computer Science 08 May 1945, Sidi Bel Abbès.",
+          "LabRI-SBA is described in provided official-site excerpt as the Computer Science Research Laboratory of Sidi Bel-Abbès, created by ministerial decree no. 1218 of 02 December 2015 and structured into four teams: ISEWED, SOC, DASE, and CISCO.",
+          "The ESI-SBA official site lists the engineering formation path: preparatory class, second-cycle common core, and specialties including ISI, SIW, IASD, and CyS.",
+          "The official ISI page states that the specialty covers computer systems applications including computer networks, real-time systems, embedded systems, infrastructure design, development, and operation.",
+          "The official ISI page lists targeted competencies in network architecture, infrastructure modeling, network administration, hardware/software system design, embedded systems, system security, operating systems, and virtualization.",
+          "The official ESI-SBA site lists LabRI-SBA as a research laboratory created by ministerial decree no. 1218 of 02 December 2015, with ISEWED, SOC, DASE, and CISCO teams."
+        ],
+        "sources": [
+          "https://www.esi-sba.dz/",
+          "https://www.esi-sba.dz/fr/index.php/laboratoire/labri-presentation",
+          "https://www.esi-sba.dz/fr/index.php/formation/schema-de-formation/",
+          "https://www.esi-sba.dz/fr/index.php/graduation/classe-preparatoire/",
+          "https://www.esi-sba.dz/fr/index.php/formation/schema-de-formation/tronc-commun-du-second-cycle/",
+          "https://www.esi-sba.dz/fr/index.php/specialite-ingenierie-des-systemes-informatiques-isi/",
+          "https://www.esi-sba.dz/fr/index.php/presentation-labri/"
+        ],
+        "verification_note": "The official LabRI details are based on the user-provided official website excerpt; full page retrieval was not available in the local extraction pass. Dates, ranking, grades, and thesis details are taken from provided PDF/text."
+      },
+      "official_program_details": {
+        "source": "https://www.esi-sba.dz/fr/index.php/specialite-ingenierie-des-systemes-informatiques-isi/",
+        "program": "Spécialité : Ingénierie des Systèmes Informatiques (ISI)",
+        "official_objective_summary_en": "The ISI specialty provides future engineers with fundamental knowledge of computer systems and their applications in computer networks, real-time systems, embedded systems, and related domains. It trains engineering managers capable of leading projects covering the design, development, and operation of IT infrastructures, with technological mastery and awareness of economic, social, and human contexts.",
+        "official_targeted_competencies_en": [
+          "Define organizational telecommunications network needs and architecture.",
+          "Design, analyze, and configure computer network architectures.",
+          "Design and model technical infrastructure such as servers and networks.",
+          "Install and configure network equipment such as switches and routers, and network/telecom administration software.",
+          "Handle network administration tasks, including user access rights, user training, and security awareness.",
+          "Design systems across hardware and software layers and understand their mutual interactions and application dependencies.",
+          "Develop advanced digital systems for hardware/software design of embedded systems.",
+          "Design, analyze, and program systems interfacing computing with electronics, electrotechnics, mechanics, robotics, and related areas.",
+          "Design embedded software and architecture from client requirements.",
+          "Secure systems by identifying and correcting vulnerabilities at operating system, network, and software-construction levels.",
+          "Master security standards, procedures, and related tools/technologies such as firewalls, antivirus, cryptography, authentication servers, penetration testing, PKI, and URL filtering.",
+          "Master major operating systems and virtualization environments including Linux, Windows, VMware ESXi, XEN, and RHEV."
+        ],
+        "official_target_roles_en": [
+          "IT production engineer",
+          "Information security manager",
+          "Infrastructure architect",
+          "Embedded software developer",
+          "Network administrator",
+          "Network and systems engineer",
+          "Security engineer",
+          "Director of infrastructure and IT production"
+        ],
+        "official_course_topics_observed": [
+          "Embedded systems",
+          "Advanced networks",
+          "Advanced databases",
+          "Advanced algorithm analysis and design",
+          "Human-computer interaction",
+          "Knowledge engineering",
+          "Distributed systems",
+          "Systems and network security",
+          "Mobile technology and development",
+          "Modeling and simulation",
+          "Data analysis",
+          "Internet of Things",
+          "Cloud computing",
+          "Advanced AI",
+          "Machine learning and data mining",
+          "Robotics",
+          "Geographic information systems",
+          "Entrepreneurship and professional ethics",
+          "Final-year project"
+        ]
+      }
+    }
+  ],
+  "research_and_publications": [
+    {
+      "title": "Quantum-Safe Blockchain and Distributed Ledger Technologies",
+      "type": "Survey paper",
+      "status": "In preparation",
+      "apa_citation": "Souala, E. (in preparation). Quantum-safe blockchain and distributed ledger technologies [Survey paper].",
+      "description": "Comprehensive review of quantum-safe blockchain technologies, post-quantum cryptography, distributed ledger architectures, quantum threats, migration strategies, and future research challenges."
+    },
+    {
+      "title": "A Hybrid Quantum-Classical State-Space Framework for Cyber-Defense Optimization: LQR-to-QUBO Formulation and IBM Quantum Validation",
+      "type": "Conference paper",
+      "status": "Submitted, according to user-provided data",
+      "apa_citation": "Souala, E. (submitted). A hybrid quantum-classical state-space framework for cyber-defense optimization: LQR-to-QUBO formulation and IBM Quantum validation [Conference paper].",
+      "description": "Hybrid quantum-classical optimization framework reformulating Linear Quadratic Regulator cyber-defense problems into QUBO models executable on IBM Quantum hardware."
+    },
+    {
+      "title": "Real-Time Detection and Identification of Spare Parts Using Deep Learning",
+      "type": "Master's thesis",
+      "status": "Completed",
+      "institution": "Higher School of Computer Science 08 May 1945, Sidi Bel Abbès (ESI-SBA)",
+      "date": "2024-10",
+      "apa_citation": "Souala, E. (2024). Real-time detection and identification of spare parts using deep learning [Master's thesis, Higher School of Computer Science 08 May 1945, Sidi Bel Abbès].",
+      "description": "Designed and evaluated deep learning models for automatic recognition of automotive spare parts from images, including computer vision techniques, CNNs, dataset construction, and AI-assisted product identification."
+    },
+    {
+      "title": "Development of an AI-Powered Platform for Solving Automotive Problems in Algeria Through Innovative Services",
+      "type": "Engineering thesis",
+      "status": "Completed",
+      "institution": "Higher School of Computer Science 08 May 1945, Sidi Bel Abbès (ESI-SBA)",
+      "date": "2024-10",
+      "apa_citation": "Souala, E. (2024). Development of an AI-powered platform for solving automotive problems in Algeria through innovative services [Engineering thesis, Higher School of Computer Science 08 May 1945, Sidi Bel Abbès].",
+      "description": "Designed and implemented AutoHub, an AI-powered automotive ecosystem integrating computer vision, marketplace services, towing services, and mechanic-customer collaboration."
+    }
+  ],
+  "skills_by_field": {
+    "quantum_computing_and_research": [
+      "Quantum algorithms",
+      "Quantum optimization",
+      "Quantum error correction",
+      "Fault-tolerant quantum computing",
+      "Post-quantum cryptography",
+      "Quantum-safe blockchain",
+      "Distributed ledger technologies",
+      "Quantum networking",
+      "IBM Quantum Platform",
+      "Qiskit",
+      "Scientific literature review",
+      "Experimental design",
+      "Academic writing",
+      "Scientific paper reproduction",
+      "Research methodology"
+    ],
+    "artificial_intelligence_and_data_science": [
+      "Machine learning",
+      "Deep learning",
+      "Computer vision",
+      "CNNs",
+      "RAG systems",
+      "AI agents",
+      "AI workflow automation",
+      "Medical image analysis",
+      "Dataset collection",
+      "Dataset cleaning",
+      "Image labeling",
+      "Model training",
+      "TensorFlow",
+      "Keras",
+      "Scikit-Learn",
+      "OpenCV",
+      "Pandas",
+      "NumPy",
+      "PyTorch"
+    ],
+    "backend_engineering": [
+      "Laravel",
+      "FastAPI",
+      "NestJS",
+      "REST APIs",
+      "Microservices",
+      "Event-driven architecture",
+      "Backend architecture",
+      "API design",
+      "Laravel Reverb",
+      "FilamentPHP",
+      "n8n",
+      "CRM integrations",
+      "Calendar integrations",
+      "External API integrations",
+      "Node.js"
+    ],
+    "frontend_engineering": [
+      "React",
+      "React 19",
+      "Next.js",
+      "Next.js 16",
+      "Vue.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Responsive UI",
+      "Dynamic UI",
+      "Frontend performance optimization",
+      "UX optimization",
+      "Marketplace interfaces",
+      "Dashboards",
+      "TypeScript"
+    ],
+    "databases_and_data_platforms": [
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Database design",
+      "Database administration",
+      "Data pipelines",
+      "Automated scraping pipelines",
+      "Apify",
+      "Structured analytics storage",
+      "WooCommerce data synchronization"
+    ],
+    "systems_networking_and_security": [
+      "Networking",
+      "Cisco networking",
+      "Cisco Packet Tracer",
+      "Network topology design",
+      "IP addressing",
+      "Security planning",
+      "Cybersecurity",
+      "Cryptography",
+      "Operating systems",
+      "Linux administration",
+      "Distributed systems",
+      "Computer architecture",
+      "Infrastructure monitoring"
+    ],
+    "cloud_devops_and_deployment": [
+      "Docker",
+      "Docker Compose",
+      "Containerization",
+      "Cloud deployment",
+      "AWS Cloud",
+      "Azure Cloud",
+      "Google Cloud",
+      "CI/CD",
+      "Production deployment",
+      "Production monitoring",
+      "Multi-service architectures",
+      "Scalable backend services",
+      "Kubernetes"
+    ],
+    "iot_and_embedded_systems": [
+      "IoT",
+      "LoRaWAN",
+      "Arduino",
+      "ESP32",
+      "C++",
+      "Sensor data collection",
+      "GPS tracking",
+      "Environmental monitoring",
+      "Long-range radio communication",
+      "Low-power embedded systems"
+    ],
+    "software_engineering_and_product": [
+      "Software architecture",
+      "System design",
+      "UML",
+      "Project management",
+      "Requirements analysis",
+      "Team collaboration",
+      "Technical reporting",
+      "Business process automation",
+      "SaaS platforms",
+      "Marketplace platforms",
+      "Healthcare platforms",
+      "Logistics platforms",
+      "Subscription platforms"
+    ],
+    "mathematics_and_scientific_foundations": [
+      "Mathematics",
+      "Physics",
+      "Linear algebra",
+      "Mathematical analysis",
+      "Probability",
+      "Statistics",
+      "Logic",
+      "Algorithms",
+      "Data structures",
+      "Optimization"
+    ]
+  },
+  "professional_experience": [
+    {
+      "title": "Freelance AI & Full-Stack Engineer",
+      "organization": "Upwork & Independent Consulting",
+      "location": "Remote / International clients",
+      "start_date": "2025-10",
+      "end_date": "Present",
+      "responsibilities": [
+        "Design and deliver AI-powered software systems, enterprise web applications, healthcare platforms, automation solutions, and cloud-native backend services.",
+        "Collaborate with radiologists to build RAG systems for medical students and medical image annotation workflows for MRI and X-ray scans.",
+        "Develop full-stack platforms across education, service scheduling, SaaS, marketplaces, logistics, and business management domains.",
+        "Manage requirements analysis, architecture, AI integration, deployment, DevOps, and long-term maintenance."
+      ],
+      "results": [
+        "Delivered production-grade RAG and medical annotation systems.",
+        "Built scalable SaaS and business platforms for clients.",
+        "Containerized and deployed projects using Docker and Docker Compose."
+      ],
+      "technologies": [
+        "FastAPI",
+        "Laravel",
+        "React 19",
+        "Next.js",
+        "MySQL",
+        "PostgreSQL",
+        "Docker",
+        "Docker Compose",
+        "REST APIs",
+        "AI integration"
+      ]
+    },
+    {
+      "title": "Backend Engineer",
+      "organization": "SobiAPI",
+      "location": "Remote",
+      "start_date": "2025-08",
+      "end_date": "2025-11",
+      "responsibilities": [
+        "Designed and developed production AI agents and automated workflows for French real estate agencies.",
+        "Built multi-step workflows for coaching sessions, AI customer calls, appointment scheduling, CRM synchronization, lead management, calendar coordination, and document processing.",
+        "Designed scalable backend services using NestJS microservices.",
+        "Integrated Azure and Google Cloud services and orchestrated automation with n8n.",
+        "Deployed containerized production environments with Docker and Docker Compose."
+      ],
+      "results": [
+        "Reduced repetitive administrative work through intelligent workflow orchestration.",
+        "Built enterprise automation systems for real estate agencies.",
+        "Delivered backend and AI infrastructure for production applications."
+      ],
+      "technologies": [
+        "NestJS",
+        "React 19",
+        "Next.js",
+        "MongoDB",
+        "n8n",
+        "Docker",
+        "Docker Compose",
+        "Microservices",
+        "Azure Cloud",
+        "Google Cloud"
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "organization": "Apollo Digital Solutions",
+      "location": "Remote",
+      "start_date": "2024-07",
+      "end_date": "2025-09",
+      "responsibilities": [
+        "Worked on large-scale SaaS platforms for influencer marketing, waste management, and digital commerce.",
+        "Designed backend services, REST APIs, admin dashboards, real-time communication features, data pipelines, and production deployments.",
+        "Optimized frontend performance and marketplace user experience.",
+        "Participated in debugging, monitoring, deployment, and continuous improvement of production systems.",
+        "Mentored interns and junior developers on best practices in software engineering, architecture, and DevOps."
+      ],
+      "results": [
+        "Contributed to Jahir influencer marketing ecosystem, CashMétaux waste management platform, and Tech360 marketplace.",
+        "Improved maintainability with modular architectures and clean implementation practices.",
+        "Built automated scraping and synchronization pipelines for analytics and commerce data."
+      ],
+      "technologies": [
+        "Laravel",
+        "Vue.js",
+        "Next.js",
+        "Laravel Reverb",
+        "FilamentPHP",
+        "MySQL",
+        "Apify",
+        "WooCommerce API",
+        "Docker"
+      ]
+    },
+    {
+      "title": "Research Intern",
+      "organization": "Laboratoire de Recherche en Informatique (LabRI), ESI-SBA",
+      "location": "Sidi Bel Abbès, Algeria",
+      "start_date": "2024-01",
+      "end_date": "2024-10",
+      "responsibilities": [
+        "Conducted literature reviews, experimental design, deep learning research, scientific writing, and AI model development.",
+        "Supported master's thesis and engineering graduation project research activities.",
+        "Collected, cleaned, and labeled automotive spare-part image datasets.",
+        "Designed and evaluated CNN models for spare-part recognition."
+      ],
+      "results": [
+        "Built research foundation for deep learning-based spare-part recognition.",
+        "Supported completion of master's thesis and engineering thesis.",
+        "Gained practical academic research methodology experience."
+      ],
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "OpenCV",
+        "FastAPI",
+        "NumPy",
+        "Pandas"
+      ]
+    },
+    {
+      "title": "Computer Science Engineer Intern",
+      "organization": "Sonelgaz - Batna Distribution Company",
+      "location": "Batna, Algeria",
+      "start_date": "2023-12",
+      "end_date": "2024-01",
+      "duration": "Approximately 2 months",
+      "supervision": "Chief Computer Science Engineer",
+      "responsibilities": [
+        "Monitored production servers and enterprise IT infrastructure.",
+        "Diagnosed and resolved software and system issues.",
+        "Developed internal software tools to automate repetitive administrative and operational tasks.",
+        "Supported infrastructure maintenance and reliability."
+      ],
+      "results": [
+        "Improved operational efficiency for technical staff through internal automation tools.",
+        "Gained exposure to enterprise information systems and networking environments."
+      ],
+      "technologies": [
+        "Server monitoring",
+        "Enterprise IT systems",
+        "Software maintenance",
+        "Internal automation tools"
+      ]
+    },
+    {
+      "title": "Computer Science Engineer Intern",
+      "organization": "Sonelgaz - Ain Djasser Distribution Company",
+      "location": "Ain Djasser, Batna, Algeria",
+      "start_date": "2022-09",
+      "end_date": "2022-09",
+      "duration": "1 month",
+      "supervision": "Chief Computer Science Engineer",
+      "responsibilities": [
+        "Monitored enterprise servers and network infrastructure.",
+        "Assisted with software maintenance and troubleshooting.",
+        "Developed small internal applications to automate repetitive technical tasks.",
+        "Learned enterprise IT operations, infrastructure management, and system administration."
+      ],
+      "results": [
+        "Gained first practical exposure to industrial IT systems and enterprise infrastructure.",
+        "Supported technical staff through maintenance and automation tasks."
+      ],
+      "technologies": [
+        "Server monitoring",
+        "Network infrastructure",
+        "System administration",
+        "Internal tools"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "ESI Examination Planning & Faculty Coordination System",
+      "category": "Academic project",
+      "description": "Centralized examination planning platform for organizing examination schedules, coordinating teacher supervision assignments, allocating classrooms, and managing examination sessions through a unified web interface.",
+      "system_architecture": "Monolithic web application with MySQL persistence, administrative scheduling interfaces, classroom and teacher assignment modules, and conflict-reduction workflows.",
+      "technologies": [
+        "PHP",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "MySQL"
+      ]
+    },
+    {
+      "title": "ESI Project Management & Supervisor Coordination Platform",
+      "category": "Academic project",
+      "description": "Platform for managing academic project lifecycles at ESI-SBA, including team formation, project theme selection, fairness in allocation, supervisor coordination, progress tracking, document submission, and communication.",
+      "system_architecture": "React frontend connected to Laravel backend and MySQL database, with role-based workflows for students, supervisors, and administration.",
+      "technologies": [
+        "React",
+        "Laravel",
+        "MySQL"
+      ]
+    },
+    {
+      "title": "CIB - Intelligent Clinical Information System",
+      "category": "Academic / enterprise healthcare system",
+      "description": "Complete information system for a real clinic under construction, covering network topology, Cisco configuration, IP addressing, security planning, staff administration, patient and doctor management, appointments, medical records, healthcare service coordination, and AI-ready services.",
+      "system_architecture": "Multi-layer healthcare ecosystem combining Cisco-modeled network infrastructure, secure backend services, React frontend modules, relational databases, and FastAPI-based AI service integration.",
+      "technologies": [
+        "React",
+        "Laravel",
+        "FastAPI",
+        "TensorFlow",
+        "Scikit-Learn",
+        "Keras",
+        "Pandas",
+        "NumPy",
+        "MySQL",
+        "PostgreSQL",
+        "Cisco Packet Tracer",
+        "Cisco",
+        "AWS Cloud"
+      ]
+    },
+    {
+      "title": "AutoHub - AI-Powered Automotive Ecosystem",
+      "category": "Engineering thesis / startup platform",
+      "description": "Unified automotive platform with three main features: AutoSpares marketplace with AI-powered image search trained on scraped public labeled spare-part datasets; TowLink Uber-like towing service; and mechanic-client management, communication, scheduling, and service tracking.",
+      "system_architecture": "React frontend, Laravel backend with real-time communication through Reverb, FastAPI AI service for computer vision inference, CNN/TensorFlow model pipeline, marketplace modules, towing dispatch modules, mechanic-client CRM modules, and relational databases.",
+      "technologies": [
+        "React",
+        "Laravel",
+        "Laravel Reverb",
+        "FastAPI",
+        "CNN",
+        "TensorFlow",
+        "Pandas",
+        "OpenCV",
+        "NumPy",
+        "MySQL",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "title": "AquaTracker - Smart Maritime Monitoring Platform",
+      "category": "IoT / SIG project",
+      "description": "Marine and fishermen support platform using LoRaWAN and IoT for long-range vessel tracking, maritime communication, GPS monitoring, and sensor data collection in isolated marine areas.",
+      "system_architecture": "Distributed embedded nodes using ESP32/Arduino and LoRaWAN radio communication, centralized Laravel backend, React dashboard, and MySQL data storage for monitoring and coordination.",
+      "technologies": [
+        "React",
+        "Laravel",
+        "C++",
+        "MySQL",
+        "Arduino",
+        "IoT",
+        "LoRaWAN",
+        "ESP32"
+      ]
+    },
+    {
+      "title": "KAGEN - Intelligent Wildfire Detection & Environmental Monitoring System",
+      "category": "IoT / SIG project",
+      "description": "Remote wildfire detection and weather monitoring platform for isolated locations, collecting humidity, temperature, environmental conditions, and fire indicators through distributed IoT devices.",
+      "system_architecture": "Low-power sensor nodes using Arduino/ESP32 and LoRaWAN, backend data ingestion, MySQL storage, and React/Laravel monitoring dashboard.",
+      "technologies": [
+        "React",
+        "Laravel",
+        "C++",
+        "MySQL",
+        "Arduino",
+        "IoT",
+        "LoRaWAN",
+        "ESP32"
+      ]
+    },
+    {
+      "title": "Jahir - Enterprise Influencer Marketing Ecosystem",
+      "category": "Professional project at Apollo Digital Solutions",
+      "description": "SaaS ecosystem with admin platform for conflict management, influencers, companies, plans and subscriptions; influencer platform for service sharing, company discovery, and stats comparison; company platform for job posting, influencer hiring, collaboration, and analytics; scraper platform for collecting and storing influencer social media statistics over time.",
+      "system_architecture": "Multi-portal SaaS architecture using Vue.js frontends, Laravel backend, Laravel Reverb real-time features, FilamentPHP admin modules, MySQL database, Apify scraping integrations, and automated analytics pipelines.",
+      "technologies": [
+        "Vue.js",
+        "Laravel",
+        "Laravel Reverb",
+        "FilamentPHP",
+        "MySQL",
+        "Apify",
+        "Social media scraping",
+        "Automated data pipelines"
+      ]
+    },
+    {
+      "title": "CashMétaux - Waste Management & Logistics Platform",
+      "category": "Professional project at Apollo Digital Solutions",
+      "description": "French waste management platform for managing waste locations, companies, dumpster renting, waste buying/selling, delivery, routing, and operational coordination.",
+      "system_architecture": "Laravel API backend with FilamentPHP administrative interfaces and MySQL storage for logistics, rental, commercial, and route-management workflows.",
+      "technologies": [
+        "Laravel API",
+        "FilamentPHP",
+        "MySQL"
+      ]
+    },
+    {
+      "title": "Tech360 - Technology Marketplace",
+      "category": "Professional project at Apollo Digital Solutions",
+      "description": "Technology marketplace for shops and clients with reels-style ads, WooCommerce API integrations, scraped product data, automated synchronization pipelines, optimized frontend UX, and dynamic UI.",
+      "system_architecture": "Next.js 16 frontend integrated with WooCommerce APIs and automated scraping/synchronization pipelines, optimized for responsive UX and continuously updated marketplace content.",
+      "technologies": [
+        "Next.js 16",
+        "WooCommerce API",
+        "Automated scraping",
+        "Automated data pipelines",
+        "Frontend optimization"
+      ]
+    },
+    {
+      "title": "AI Agents & Intelligent Business Automation Platform",
+      "category": "Professional project at SobiAPI",
+      "description": "AI agent and automation platform for French real estate agencies, covering coaching sessions, AI calls, automated workflows, CRM/calendar coordination, and cloud-service integrations.",
+      "system_architecture": "NestJS microservices backend, React 19/Next.js frontend, MongoDB persistence, n8n workflow orchestration, Azure and Google Cloud integrations, and Docker/Docker Compose containerized deployment.",
+      "technologies": [
+        "n8n",
+        "MongoDB",
+        "React 19",
+        "Next.js",
+        "NestJS",
+        "Microservices",
+        "Docker",
+        "Docker Compose",
+        "Azure",
+        "Google Cloud"
+      ]
+    },
+    {
+      "title": "Medical AI Learning Platform & Annotation System",
+      "category": "Freelance / Upwork project",
+      "description": "RAG AI system for medical students and annotation application for MRI and X-ray scans, built in collaboration with radiologists for learning and dataset preparation workflows.",
+      "system_architecture": "FastAPI AI/RAG services, Laravel backend modules, React 19 frontend, MySQL database, REST APIs, and annotation workflows for medical imaging.",
+      "technologies": [
+        "FastAPI",
+        "MySQL",
+        "Laravel",
+        "React 19",
+        "REST APIs",
+        "RAG",
+        "Medical image annotation"
+      ]
+    },
+    {
+      "title": "Smart Study Platform",
+      "category": "Independent project",
+      "description": "Study application for managing PDFs, notes, time tracking, smart study plans, configurable Pomodoro-style sessions including 30-minute work and 5-minute break cycles, and progress analytics.",
+      "system_architecture": "Web platform centered on document management, planning logic, time-tracking modules, and personalized scheduling workflows.",
+      "technologies": [
+        "Web application",
+        "PDF management",
+        "Notes management",
+        "Time tracking",
+        "Smart planning"
+      ]
+    },
+    {
+      "title": "OpenDesk - Business Scheduling Platform",
+      "category": "Freelance project",
+      "description": "Client service and scheduling management system for service providers, including customer management, appointments, calendar workflows, communication, and real-time updates.",
+      "system_architecture": "Laravel backend, React frontend, MySQL persistence, and Laravel Reverb for real-time scheduling and service-management updates.",
+      "technologies": [
+        "Laravel",
+        "Laravel Reverb",
+        "React",
+        "MySQL"
+      ]
+    },
+    {
+      "title": "E-Learning Platform",
+      "category": "Independent / client platform",
+      "description": "Subscription-based learning platform for publishing educational content, managing student enrollments, controlling subscription plans, organizing digital courses, and delivering learning materials.",
+      "system_architecture": "Subscription-oriented web platform with content management, enrollment management, payment/subscription workflows, and scalable course delivery modules.",
+      "technologies": [
+        "Web platform",
+        "Subscription model",
+        "Course management",
+        "Student management"
+      ]
+    },
+    {
+      "title": "Kodotiq",
+      "category": "Independent company / IT consulting",
+      "description": "IT consulting company designed and developed by Souala Elhoussine, providing software engineering, AI development, cloud solutions, automation services, and digital transformation solutions for startups and businesses.",
+      "system_architecture": "Consulting and service-delivery business platform supporting custom enterprise software, AI solutions, cloud deployments, and automation projects.",
+      "technologies": [
+        "Software engineering",
+        "AI development",
+        "Cloud solutions",
+        "Automation",
+        "Digital transformation"
+      ]
+    },
+    {
+      "title": "Twreed - Manufacturing & Service Marketplace",
+      "category": "Independent project",
+      "description": "Marketplace connecting clients looking for products and services with small factories, agencies, workshops, woodworking providers, sewing/tailoring providers, and other local service/product providers, including delivery management.",
+      "system_architecture": "Marketplace platform with client-provider coordination, quotation/order workflows, production tracking, communication, and delivery logistics management.",
+      "technologies": [
+        "Marketplace platform",
+        "Delivery management",
+        "Order coordination",
+        "Service provider workflows"
+      ]
+    },
+    {
+      "title": "CargoLoop - Collaborative Logistics Platform",
+      "category": "Independent project",
+      "description": "Logistics platform solving empty return trips by connecting people with packages to trucks or large vehicles already returning empty after deliveries along compatible routes.",
+      "system_architecture": "Route-matching platform for available cargo capacity, package requests, vehicle route matching, logistics coordination, and fleet-utilization optimization.",
+      "technologies": [
+        "Logistics platform",
+        "Route matching",
+        "Marketplace coordination",
+        "Delivery optimization"
+      ]
+    },
+    {
+      "title": "Niro - Private School Management SaaS",
+      "category": "SaaS / education platform",
+      "description": "SaaS platform for private school management, designed to centralize administrative operations while integrating smart e-learning features for digital education workflows.",
+      "system_architecture": "Multi-tenant school management SaaS with modules for administration, users, academic operations, and integrated smart e-learning features supporting online learning and school coordination.",
+      "technologies": [
+        "SaaS platform",
+        "School management system",
+        "Smart e-learning",
+        "Education technology",
+        "Administrative workflows"
+      ]
+    }
+  ],
+  "deployment_and_devops_profile": {
+    "summary": "Most academic, professional, freelance, and independent projects were designed for production deployment using Docker, Docker Compose, containerization, cloud deployment, multi-service architecture, and scalable backend service practices.",
+    "technologies": [
+      "Docker",
+      "Docker Compose",
+      "Containerization",
+      "Cloud deployment",
+      "AWS",
+      "Azure",
+      "Google Cloud",
+      "CI/CD",
+      "Production monitoring",
+      "Multi-service architecture"
+    ]
+  },
+  "certifications": [
+    {
+      "title": "Hands-on Quantum Error Correction with Google Quantum AI",
+      "issuer": "Google Quantum AI / Coursera",
+      "date": "2026",
+      "field": "Quantum computing, quantum error correction, fault-tolerant quantum computing",
+      "source_note": "Title normalized from provided text: Google Quantum AI Coursera certificate 'Hands-on Quantum Error Correction with Google Quantum AI'."
+    }
+  ],
+  "source_provenance": {
+    "official_sources_checked_or_referenced": [
+      "https://www.usthb.dz/",
+      "https://riima.usthb.dz",
+      "https://riima.usthb.dz/vnets",
+      "https://www.esi-sba.dz/",
+      "https://www.esi-sba.dz/fr/index.php/laboratoire/labri-presentation",
+      "https://www.esi-sba.dz/fr/index.php/formation/schema-de-formation/",
+      "https://www.esi-sba.dz/fr/index.php/graduation/classe-preparatoire/",
+      "https://www.esi-sba.dz/fr/index.php/formation/schema-de-formation/tronc-commun-du-second-cycle/",
+      "https://www.esi-sba.dz/fr/index.php/specialite-ingenierie-des-systemes-informatiques-isi/",
+      "https://www.esi-sba.dz/fr/index.php/presentation-labri/"
+    ],
+    "objectivity_notes": [
+      "Claims about grades, rankings, competition candidate counts, project ownership, employment responsibilities, and publication status are taken from the provided PDF/text/user message unless explicitly marked as officially verified.",
+      "Only one conference paper is marked as submitted; the survey paper is marked as in preparation; other research items are thesis outputs or under preparation as provided by the user.",
+      "Spelling, grammar, and title casing were normalized while preserving the substance of the provided details.",
+      "Niro project details are taken from the user-provided message on 2026-06-26.",
+      "Official ESI-SBA ISI objectives and competency details were added from the official specialty page on 2026-06-26.",
+      "Public GitHub and portfolio facts were added under additional_public_profile_findings; they do not override user-provided CV dates when discrepancies exist."
+    ],
+    "public_sources_checked_or_referenced": [
+      "https://github.com/Greghori101",
+      "https://api.github.com/users/Greghori101",
+      "https://portfolio.level-up-org.com/"
+    ]
+  },
+  "additional_public_profile_findings": {
+    "github_profile": {
+      "source": "https://github.com/Greghori101",
+      "api_source": "https://api.github.com/users/Greghori101",
+      "login": "Greghori101",
+      "display_name": "Souala Hoceyne",
+      "blog": "https://portfolio.level-up-org.com/",
+      "bio": "I am a computer science engineer passionate about data science, AI, and web scraping, dedicated to developing real-world solutions.",
+      "public_repositories_observed": 68,
+      "created_at": "2020-07-04T11:43:47Z",
+      "updated_at_observed": "2026-06-17T16:16:24Z"
+    },
+    "portfolio_profile": {
+      "source": "https://portfolio.level-up-org.com/",
+      "page_title": "Souala Elhoussine | Full-Stack Engineer & Quantum Computing Researcher",
+      "meta_description": "PhD Candidate in Quantum Computing | Full-Stack Software Engineer specializing in AI integration, scalable systems design, and cutting-edge technologies",
+      "public_summary_observed": "Full-stack engineer and AI systems designer specializing in scalable systems, quantum computing, AI integration, distributed systems, blockchain technology, and cloud infrastructure; located in Algiers, Algeria; status listed as PhD at USTHB.",
+      "public_metrics_observed": [
+        "3+ years experience",
+        "20+ completed projects"
+      ],
+      "technologies_observed": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "FastAPI",
+        "NestJS",
+        "Laravel",
+        "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "MongoDB",
+        "TensorFlow",
+        "PyTorch",
+        "AWS"
+      ],
+      "public_date_discrepancies_note": "Portfolio lists SobiAPI as Aug 2025-Oct 2025 and Apollo as Jul 2024-Aug 2025, while user-provided CV data lists SobiAPI Aug 2025-Nov 2025 and Apollo Jul 2024-Sep 2025. The structured CV preserves user-provided dates and records this as a public-source discrepancy."
+    },
+    "search_note": "No additional strongly identifiable indexed public references for the exact names 'Souala Elhoussine' or 'Elhoussine Souala' were found beyond the provided GitHub and portfolio sources during this search pass."
+  }
+}
