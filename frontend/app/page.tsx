@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import NavigationDots from '@/components/navigation-dots'
 import Image from 'next/image'
 import { portfolioApi, type EducationData, type ExperienceData, type PublicationData, type ProjectData } from '@/lib/api'
+import { techIcons } from '@/techIcons'
 
 
 const navItems = [
@@ -18,6 +19,7 @@ const navItems = [
   { label: 'Research', href: '/#research' },
   { label: 'Blogs', href: '/blogs' },
 ]
+
 
 function formatMonthYear(value: string) {
   const trimmed = value.trim()
@@ -295,7 +297,7 @@ export default function Portfolio() {
                           title={t}
                         >
                           <Image
-                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${t.toLowerCase().replace('.', '')}/${t.toLowerCase().replace('.', '')}-original.svg`}
+                            src={techIcons[t] ?? "/images/tech/default.png"}
                             alt={t}
                             width={24}
                             height={24}
