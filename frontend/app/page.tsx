@@ -417,7 +417,7 @@ export default function Portfolio() {
                 return (
                   <div key={key}>
                     <h3 className="text-2xl font-black text-foreground mb-3">{content.title}</h3>
-                    <p className="text-foreground font-semibold mb-2">{content.institution} • {content.start}-{content.end}</p>
+                    <p className="text-foreground font-semibold mb-2">{content.institution} • {formatDateRange(content.start, content.end)}</p>
                     <span className="text-accent font-semibold">{content.thesis}</span>
                     <p className="leading-relaxed"> {content.details}</p>
                   </div>

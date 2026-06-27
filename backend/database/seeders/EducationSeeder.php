@@ -28,7 +28,7 @@ class EducationSeeder extends Seeder
                 'title' => 'Computer Systems Engineering Degree & Master\'s Research Track',
                 'institution' => 'Higher School of Computer Science 08 May 1945, Sidi Bel Abbès (ESI-SBA)',
                 'start' => '2019-09',
-                'end' => '2024-10-13',
+                'end' => '2024-10',
                 'thesis' => 'Real-Time Spare Parts Detection with Deep Learning; AutoHub AI Automotive Platform',
                 'details' => 'Completed Computer Systems Engineering specialization (ISI). Studies covered mathematics, algorithms, data structures, computer architecture, operating systems, networks, cryptography, databases, distributed systems, cybersecurity, cloud concepts, web and mobile development, UML, project management, AI, machine learning, deep learning, computer vision, IoT, cloud computing, embedded systems, and research methodology.',
                 'sort_order' => 20,

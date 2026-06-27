@@ -67,8 +67,8 @@ export interface EducationData {
   id: number;
   title: string;
   institution: string;
-  start: string | null;
-  end: string | null;
+  start: string;
+  end: string;
   thesis: string | null;
   details: string | null;
   sort_order: number;
