@@ -289,7 +289,13 @@ export default function Portfolio() {
                   <div className="mt-8 pt-8 border-t border-border">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4">Technologies</p>
                     <div className="relative h-14 flex items-center">
-                      {(project.tech ?? []).slice(0, 4).map((t, idx) => (
+                      {Array.from(
+                        new Map(
+                          (project.tech ?? [])
+                            .filter(t => techIcons[t])
+                            .map(t => [techIcons[t], t]) // key = icon path
+                        ).values()
+                      ).slice(0, 5).map((t, idx) => (
                         <div
                           key={idx}
                           className="group/tech absolute w-12 h-12 rounded-full bg-accent/10 border-2 border-card hover:border-accent hover:bg-accent/20 transition-all duration-300 flex items-center justify-center cursor-help hover:z-10 hover:scale-125 hover:shadow-lg hover:shadow-accent/30"

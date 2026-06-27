@@ -71,5 +71,6 @@ export const techIcons: Record<string, string> = {
   "AWS Cloud": "/images/tech/amazonwebservices.svg",
   "Cloud Solutions": "/images/tech/amazonwebservices.svg",
   "RAG": "/images/tech/openai.svg",
-  "PDF Management": "/images/tech/pdf.svg"
+  "PDF Management": "/images/tech/pdf.svg",
+  "FilamentPHP":  "/images/tech/filamentphp.svg"
 };
